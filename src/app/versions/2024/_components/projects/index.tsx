@@ -1,7 +1,7 @@
 'use client';
-import Container from '../../../components/container';
-import Title from '../../../components/title';
 
+import Container from '@/components/container';
+import Title from '@/components/title';
 import { Button } from '@/components/ui/button';
 import { NAVIGATION_NAMES } from '@/constants/navigation-names';
 import { FolderRootIcon } from 'lucide-react';

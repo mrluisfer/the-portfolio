@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button';
 import socialMediaLinks from '@/constants/social-media-links';
+import linkAnimationData from '@/lotties/link.json';
 import Lottie, { type LottieRefCurrentProps } from 'lottie-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { TbBrandGithubFilled } from 'react-icons/tb';
-import linkAnimationData from '../../../../lotties/link.json';
 
 const START_YEAR = 2021;
 

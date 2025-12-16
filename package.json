@@ -1,13 +1,11 @@
 {
-  "name": "portfolio-2025",
+  "name": "the-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "format": "prettier --write .",
     "check": "prettier --check .",
-    "biome:format": "npx @biomejs/biome format --write .",
-    "biome:check": "yarn biome check --write .",
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
@@ -32,8 +30,6 @@
     "@remixicon/react": "^4.6.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@tanstack/react-query": "^5.83.0",
-    "@tanstack/react-router": "^1.129.8",
-    "@tanstack/react-start": "^1.129.8",
     "@types/mdx": "2.0.13",
     "animejs": "^4.1.1",
     "class-variance-authority": "^0.7.1",

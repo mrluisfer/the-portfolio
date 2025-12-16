@@ -9,7 +9,7 @@ import {
   TimelineTitle,
 } from '@/components/ui/timeline';
 import { reverseArray } from '@/lib/reverse-array';
-import { defaultTimelineData } from './default-timeline-data';
+import { defaultTimelineData } from '../../constants/default-timeline-data';
 
 export default function ExperienceTimeline({
   minimal = false,

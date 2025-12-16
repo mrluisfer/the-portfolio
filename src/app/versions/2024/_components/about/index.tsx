@@ -1,12 +1,12 @@
 'use client';
 import { motion } from 'motion/react';
 
-import FocusedOn from '@/app/_components/about/focused-on';
+import Container from '@/components/container';
 import { NAVIGATION_NAMES } from '@/constants/navigation-names';
 import craft from '@/lotties/craft.json';
 import Lottie from 'lottie-react';
 import { LayoutDashboardIcon, ServerIcon } from 'lucide-react';
-import Container from '../../../components/container';
+import FocusedOn from './focused-on';
 
 export default function About() {
   return (

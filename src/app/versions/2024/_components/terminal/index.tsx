@@ -5,9 +5,9 @@ import { GoDash } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { type IconType } from 'react-icons/lib';
 
+import ShadowBox from '@/components/shadow-box';
 import { NAVIGATION_NAMES } from '@/constants/navigation-names';
 import 'src/styles/general-pattern.scss';
-import ShadowBox from '../../../components/shadow-box';
 import Content from './content';
 
 function TerminalDot({ color, Icon }: { color: string; Icon?: IconType }) {

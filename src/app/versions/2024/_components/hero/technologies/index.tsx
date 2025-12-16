@@ -1,5 +1,5 @@
+import technologies from '@/constants/technologies';
 import { motion } from 'motion/react';
-import technologies from '../../../../constants/technologies';
 
 const MarqueeAnimation = () => {
   return (

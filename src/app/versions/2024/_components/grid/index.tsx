@@ -1,8 +1,8 @@
 'use client';
+import Container from '@/components/container';
 import { NAVIGATION_NAMES } from '@/constants/navigation-names';
 import { type HTMLMotionProps, motion } from 'motion/react';
 import { type ReactNode } from 'react';
-import Container from '../../../components/container';
 import Experience from './experience';
 import Phrase from './phrase';
 import Principles from './principles';

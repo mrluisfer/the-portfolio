@@ -1,6 +1,6 @@
 'use client';
+import Container from '@/components/container';
 import { NAVIGATION_NAMES } from '@/constants/navigation-names';
-import Container from '../../../components/container';
 import AboutMe from './about-me';
 import Experience from './experience';
 import Header from './header';

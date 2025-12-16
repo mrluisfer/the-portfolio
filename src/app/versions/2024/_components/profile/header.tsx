@@ -1,9 +1,9 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import '@/styles/white-pattern.scss';
 import { motion } from 'motion/react';
 import { FaCheck } from 'react-icons/fa6';
 import { HiLocationMarker } from 'react-icons/hi';
 import { CONTENT_TEXT_COLOR } from '.';
-import { Avatar, AvatarFallback, AvatarImage } from '../../../components/ui/avatar';
 
 const GITHUB_PROFILE_IMG = 'https://avatars.githubusercontent.com/u/65029792?v=4';
 const LOCATION = 'Morelia, México';

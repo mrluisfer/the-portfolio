@@ -1,7 +1,7 @@
+import catAnimationData from '@/lotties/cat.json';
 import Lottie, { type LottieRefCurrentProps } from 'lottie-react';
 import { motion } from 'motion/react';
 import { useRef } from 'react';
-import catAnimationData from '../../../lotties/cat.json';
 
 export default function Logo() {
   const logoRef = useRef<LottieRefCurrentProps>(null);

@@ -1,6 +1,6 @@
-import Container from '../../../components/container';
-import SocialLinks from '../../../components/social-links';
-import { ThemeToggle } from '../../../components/theme-toggle';
+import Container from '@/components/container';
+import SocialLinks from '@/components/social-links';
+import { ThemeToggle } from '@/components/theme-toggle';
 import CurrentPlaying from './current-playing';
 import CurrentTime from './current-time';
 import Logo from './logo';
