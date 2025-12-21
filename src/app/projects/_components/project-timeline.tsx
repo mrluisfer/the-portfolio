@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function ProjectTimeline() {
   return (
-    <section className="px-6 pb-10 sm:px-10">
+    <section className="px-6 pb-10 sm:px-10" id="experience">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-base font-medium text-neutral-900 dark:text-neutral-400">Experience</h2>
         <Button asChild size={'sm'}>

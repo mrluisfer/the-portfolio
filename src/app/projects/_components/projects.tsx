@@ -1,4 +1,4 @@
-import { projects } from '@/app/versions/2024/_components/projects/projects-list';
+import { projects } from '@/app/_components/projects/projects-list';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
