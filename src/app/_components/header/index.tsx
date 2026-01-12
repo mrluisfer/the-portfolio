@@ -3,90 +3,58 @@
 import Container from '@/components/container';
 import SocialLinks from '@/components/social-links';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { motion, useMotionValueEvent, useScroll } from 'motion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CurrentPlaying from './current-playing';
 import CurrentTime from './current-time';
 import Logo from './logo';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled(latest > 100);
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    // Check initial state
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
       {/* Placeholder para mantener el espacio cuando el header sea fixed */}
-      <motion.div
-        initial={false}
-        animate={{
-          height: isScrolled ? 'auto' : 0,
-          opacity: isScrolled ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.3,
-          ease: [0.25, 0.46, 0.45, 0.94],
-        }}
-        className="overflow-hidden"
-      >
-        <div className="h-[56px] sm:h-[64px]" />
-      </motion.div>
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-out ${
+          isScrolled ? 'h-[56px] opacity-100 sm:h-[64px]' : 'h-0 opacity-0'
+        }`}
+        aria-hidden="true"
+      />
 
-      <motion.div
-        className="w-full"
-        initial={false}
-        animate={{
-          position: isScrolled ? 'fixed' : 'relative',
-          top: isScrolled ? 0 : 'auto',
-          zIndex: isScrolled ? 50 : 'auto',
-        }}
-        transition={{
-          duration: 0.3,
-          ease: [0.25, 0.46, 0.45, 0.94],
-        }}
+      <div
+        className={`w-full transition-none ${
+          isScrolled ? 'fixed top-0 z-50' : 'relative'
+        }`}
       >
-        <motion.div
-          initial={false}
-          animate={{
-            backdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(0px)',
-            boxShadow: isScrolled
-              ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)'
-              : '0 0 0 0 rgba(0, 0, 0, 0)',
-            backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0)',
-          }}
-          transition={{
-            duration: 0.3,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="relative border-b border-transparent transition-colors"
-          style={{
-            WebkitBackdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(0px)',
-            borderBottomColor: isScrolled ? 'rgba(229, 231, 235, 0.4)' : 'transparent',
-          }}
+        <div
+          className={`
+            relative border-b transition-all duration-300 ease-out
+            ${
+              isScrolled
+                ? 'border-white/20 bg-white/50 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.1)] backdrop-blur-2xl backdrop-saturate-[200%] dark:border-white/[0.08] dark:bg-black/50 dark:shadow-[0_2px_20px_-5px_rgba(0,0,0,0.4)]'
+                : 'border-transparent bg-transparent'
+            }
+          `}
         >
-          {/* Dark mode overlay */}
-          <motion.div
-            className="absolute inset-0 opacity-0 dark:opacity-100"
-            initial={false}
-            animate={{
-              backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.85)' : 'rgba(10, 10, 10, 0)',
-            }}
-            transition={{
-              duration: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            style={{
-              borderBottomColor: isScrolled ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-            }}
-          />
-
           {/* Gradient border superior sutil */}
-          {isScrolled && (
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent dark:via-blue-500/20" />
-          )}
+          <div
+            className={`
+              pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transition-opacity duration-300 dark:via-blue-500/20
+              ${isScrolled ? 'opacity-100' : 'opacity-0'}
+            `}
+          />
 
           <Container>
             <header className="relative z-10 mx-auto flex flex-wrap items-center justify-between gap-3 px-2 py-2.5 sm:gap-4 sm:px-4 sm:py-3 lg:px-0">
@@ -106,8 +74,8 @@ export default function Header() {
               </nav>
             </header>
           </Container>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </>
   );
 }
