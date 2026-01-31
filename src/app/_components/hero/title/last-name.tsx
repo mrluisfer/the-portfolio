@@ -79,7 +79,7 @@ export default function LastName() {
           <motion.p
             className={`flex items-center text-5xl will-change-[opacity] sm:text-6xl md:text-9xl ${currentVariant.color}`}
             style={{ gap: 0, direction: currentVariant.rtl ? 'rtl' : 'ltr' }}
-            whileHover={{ gap: '0.5rem', scale: 1.05 }}
+            whileHover={{ gap: '0.5rem' }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
             {currentVariant.text.split('').map((letter, id) => (
@@ -98,8 +98,8 @@ export default function LastName() {
           {(currentVariant.emoji || currentVariant.message) && (
             <motion.div
               className="flex items-center gap-2 text-sm font-medium opacity-70"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.7, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
               transition={{ delay: 0.3 }}
             >
               {currentVariant.emoji && (
