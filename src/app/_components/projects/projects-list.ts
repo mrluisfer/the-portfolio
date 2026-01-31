@@ -25,7 +25,7 @@ export const projects: ProjectType[] = [
       'PostgreSQL',
       'Node.js',
     ],
-    imageCover: '/projects/monfly-preview.webp',
+    imageCover: '/projects/monfly.png',
     imgAuthor: 'Nathan Dumlao',
   },
   {
@@ -45,7 +45,7 @@ export const projects: ProjectType[] = [
       'i18next',
       'Zod',
     ],
-    imageCover: '/projects/bambu-preview.webp',
+    imageCover: '/projects/bambu.png',
     imgAuthor: 'Evie S.',
   },
   {
@@ -87,7 +87,7 @@ export const projects: ProjectType[] = [
     repoUrl: 'https://github.com/mrluisfer/js-challenge-hub',
     previewUrl: 'https://jschallenges-hub.vercel.app/',
     technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'React Router', 'Zod'],
-    imageCover: '/projects/challenges-preview.webp',
+    imageCover: '/projects/js-challenge.png',
     imgAuthor: 'Kevin Canlas',
   },
   {
@@ -116,7 +116,16 @@ export const projects: ProjectType[] = [
     repoUrl: 'https://github.com/mrluisfer/seo-generator',
     previewUrl: 'https://seo-generator.vercel.app',
     technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS'],
-    imageCover: '/projects/seo-preview.webp',
+    imageCover: '/projects/seo-generator.png',
     imgAuthor: 'Myriam Jessier',
+  },
+  {
+    name: 'The Impostor Game',
+    description:
+      'LAN social deduction game inspired by Among Us. player roles, and interactive gameplay using Vite, DaisyUI, ChatGPT API and React for a smooth experience.',
+    repoUrl: 'https://github.com/mrluisfer/impostor-game',
+    previewUrl: 'https://el-impostor-mx.vercel.app',
+    technologies: ['TypeScript', 'React', 'Vite', 'DaisyUI', 'Node.js', 'DaisyUI', 'OpenAI'],
+    imageCover: '/projects/impostor-preview.png',
   },
 ];
