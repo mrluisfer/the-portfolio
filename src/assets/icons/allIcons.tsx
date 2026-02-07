@@ -548,26 +548,6 @@ export const Deno = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const DarkDeno = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xmlSpace="preserve"
-    fillRule="evenodd"
-    strokeLinejoin="round"
-    strokeMiterlimit={2}
-    clipRule="evenodd"
-    viewBox="0 0 441 441"
-    width="1em"
-    height="1em"
-    {...props}
-  >
-    <path
-      fill="#fff"
-      d="M229.858-2.62c121.29 5.675 215.154 108.755 209.479 230.045S330.582 442.578 209.292 436.903-5.863 328.149-.188 206.859 108.568-8.296 229.858-2.62Zm51.365 264.922c-13.886-.687-27.594-3.012-38.616-4.857-8.381-1.404-16.33-3.616-22.855-5.858a2.576 2.576 0 0 0-2.932.878c-.678.905-.777 2.22-.02 3.061 3.08 3.418 12.848 10.54 20.439 13.812-6.491 5.357-10.933 17.608-12.684 23.95-2.35 8.51-2.687 20.801-2.12 25.312 2.282 18.146 8.95 34.41 25.467 48.64 11.562 9.96 28.295 16.77 45.399 17.08 23.603.426 51.882-9.705 74.085-32.493 29.028-31.807 48.051-73.17 51.593-119.393 8.434-110.06-74.073-206.264-184.134-214.698C124.785 9.302 28.582 91.81 20.147 201.87c-4.368 56.998 15.655 110.28 51.267 149.576a3.185 3.185 0 0 0 5.422-2.974c-26.39-103.487 30.95-215.162 94.926-250.494 23.751-13.118 46.884-18.1 67.664-9.69 31.814 12.874 50 34.21 89.375 52.163 39.375 17.951 43.625 47.862 32.64 78.098-10.986 30.236-46.358 45.425-80.218 43.753Zm-68.863-160.08c-12.906 1.006-21.384 16.978-22.497 27.253-1.117 10.275 3.978 27.236 20.794 26.91 19.694-.383 25.681-17.238 23.525-33.55-1.618-12.25-11.033-21.456-21.822-20.613Z"
-    />
-  </svg>
-);
-
 export const PostgreSQL = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -891,3 +871,527 @@ export const Sentry = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+// ✅ Nextjs - agregar width/height + useUniqueIds para evitar colisión de IDs
+export const Nextjs = (props: SVGProps<SVGSVGElement>) => {
+  const [maskId, grad0, grad1] = useUniqueIds(3);
+  return (
+    <svg {...props} viewBox="0 0 180 180" width="1em" height="1em">
+      <mask
+        height="180"
+        id={maskId}
+        maskUnits="userSpaceOnUse"
+        width="180"
+        x="0"
+        y="0"
+        style={{ maskType: 'alpha' }}
+      >
+        <circle cx="90" cy="90" fill="black" r="90" />
+      </mask>
+      <g mask={`url(#${maskId})`}>
+        <circle cx="90" cy="90" data-circle="true" fill="black" r="90" />
+        <path
+          d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
+          fill={`url(#${grad0})`}
+        />
+        <rect fill={`url(#${grad1})`} height="72" width="12" x="115" y="54" />
+      </g>
+      <defs>
+        <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id={grad0}
+          x1="109"
+          x2="144.5"
+          y1="116.5"
+          y2="160.5"
+        >
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id={grad1}
+          x1="121"
+          x2="120.799"
+          y1="54"
+          y2="106.875"
+        >
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+// ✅ Docker - agregar width/height
+export const Docker = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 24 24" fill="#008fe2" width="1em" height="1em">
+    <path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.95-5.43h2.12a.19.19 0 0 0 .18-.19V3.57a.19.19 0 0 0-.18-.18h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m0 2.71h2.12a.19.19 0 0 0 .18-.18V6.29a.19.19 0 0 0-.18-.18h-2.12a.18.18 0 0 0-.19.18v1.89c0 .1.09.18.19.18m-2.93 0h2.12a.19.19 0 0 0 .18-.18V6.29a.18.18 0 0 0-.18-.18H8.1a.18.18 0 0 0-.18.18v1.89c0 .1.08.18.18.18m-2.96 0h2.11a.19.19 0 0 0 .19-.18V6.29a.18.18 0 0 0-.19-.18H5.14a.19.19 0 0 0-.19.18v1.89c0 .1.08.18.19.18m5.89 2.72h2.12a.19.19 0 0 0 .18-.19V9.01a.19.19 0 0 0-.18-.19h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m-2.93 0h2.12a.18.18 0 0 0 .18-.19V9.01a.18.18 0 0 0-.18-.19H8.1a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.96 0h2.11a.18.18 0 0 0 .19-.19V9.01a.18.18 0 0 0-.18-.19H5.14a.19.19 0 0 0-.19.19v1.88c0 .1.08.19.19.19m-2.92 0h2.12a.18.18 0 0 0 .18-.19V9.01a.18.18 0 0 0-.18-.19H2.22a.18.18 0 0 0-.19.18v1.9c0 .1.08.18.19.18m21.54-1.19c-.06-.05-.67-.51-1.95-.51-.34 0-.68.03-1.01.09a3.77 3.77 0 0 0-1.72-2.57l-.34-.2-.23.33a4.6 4.6 0 0 0-.6 1.43c-.24.97-.1 1.88.4 2.66a4.7 4.7 0 0 1-1.75.42H.76a.75.75 0 0 0-.76.75 11.38 11.38 0 0 0 .7 4.06 6.03 6.03 0 0 0 2.4 3.12c1.18.73 3.1 1.14 5.28 1.14.98 0 1.96-.08 2.93-.26a12.25 12.25 0 0 0 3.82-1.4 10.5 10.5 0 0 0 2.61-2.13c1.25-1.42 2-3 2.55-4.4h.23c1.37 0 2.21-.55 2.68-1 .3-.3.55-.66.7-1.06l.1-.28Z" />
+  </svg>
+);
+
+// ✅ TanStack - agregar width/height
+export const TanStack = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    width="1em"
+    height="1em"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 633 633"
+  >
+    <defs>
+      <linearGradient id="tanstack__b" x1="50%" x2="50%" y1="0%" y2="71.65%">
+        <stop offset="0%" stopColor="#6BDAFF" />
+        <stop offset="31.922%" stopColor="#F9FFB5" />
+        <stop offset="70.627%" stopColor="#FFA770" />
+        <stop offset="100%" stopColor="#FF7373" />
+      </linearGradient>
+      <linearGradient id="tanstack__d" x1="43.996%" x2="53.441%" y1="8.54%" y2="93.872%">
+        <stop offset="0%" stopColor="#673800" />
+        <stop offset="100%" stopColor="#B65E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__e" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#2F8A00" />
+        <stop offset="100%" stopColor="#90FF57" />
+      </linearGradient>
+      <linearGradient id="tanstack__f" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#2F8A00" />
+        <stop offset="100%" stopColor="#90FF57" />
+      </linearGradient>
+      <linearGradient id="tanstack__g" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#2F8A00" />
+        <stop offset="100%" stopColor="#90FF57" />
+      </linearGradient>
+      <linearGradient id="tanstack__h" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#2F8A00" />
+        <stop offset="100%" stopColor="#90FF57" />
+      </linearGradient>
+      <linearGradient id="tanstack__i" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#2F8A00" />
+        <stop offset="100%" stopColor="#90FF57" />
+      </linearGradient>
+      <linearGradient id="tanstack__j" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#2F8A00" />
+        <stop offset="100%" stopColor="#90FF57" />
+      </linearGradient>
+      <linearGradient id="tanstack__k" x1="92.9%" x2="8.641%" y1="45.768%" y2="54.892%">
+        <stop offset="0%" stopColor="#EE2700" />
+        <stop offset="100%" stopColor="#FF008E" />
+      </linearGradient>
+      <linearGradient id="tanstack__l" x1="61.109%" x2="43.717%" y1="3.633%" y2="43.072%">
+        <stop offset="0%" stopColor="#FFF400" />
+        <stop offset="100%" stopColor="#3C8700" />
+      </linearGradient>
+      <linearGradient id="tanstack__m" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFDF00" />
+        <stop offset="100%" stopColor="#FF9D00" />
+      </linearGradient>
+      <linearGradient id="tanstack__n" x1="127.279%" x2="0%" y1="49.778%" y2="50.222%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__o" x1="127.279%" x2="0%" y1="47.531%" y2="52.469%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__p" x1="127.279%" x2="0%" y1="46.195%" y2="53.805%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__q" x1="127.279%" x2="0%" y1="35.33%" y2="64.67%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__r" x1="127.279%" x2="0%" y1="4.875%" y2="95.125%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__s" x1="78.334%" x2="31.668%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__t" x1="57.913%" x2="44.88%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <linearGradient id="tanstack__u" x1="50.495%" x2="49.68%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFA400" />
+        <stop offset="100%" stopColor="#FF5E00" />
+      </linearGradient>
+      <circle id="tanstack__a" cx="308.5" cy="308.5" r="308.5" />
+      <circle id="tanstack__v" cx="307.5" cy="308.5" r="316.5" />
+    </defs>
+    <g fill="none" fillRule="evenodd" transform="translate(9 8)">
+      <mask id="tanstack__c" fill="#fff">
+        <use xlinkHref="#tanstack__a" />
+      </mask>
+      <use xlinkHref="#tanstack__a" fill="url(#tanstack__b)" />
+      <ellipse
+        cx="81.5"
+        cy="602.5"
+        fill="#015064"
+        stroke="#00CFE2"
+        strokeWidth="25"
+        mask="url(#tanstack__c)"
+        rx="214.5"
+        ry="185.968"
+      />
+      <ellipse
+        cx="535.5"
+        cy="602.5"
+        fill="#015064"
+        stroke="#00CFE2"
+        strokeWidth="25"
+        mask="url(#tanstack__c)"
+        rx="214.5"
+        ry="185.968"
+      />
+      <ellipse
+        cx="81.5"
+        cy="640.5"
+        fill="#015064"
+        stroke="#00A8B8"
+        strokeWidth="25"
+        mask="url(#tanstack__c)"
+        rx="214.5"
+        ry="185.968"
+      />
+      <ellipse
+        cx="535.5"
+        cy="640.5"
+        fill="#015064"
+        stroke="#00A8B8"
+        strokeWidth="25"
+        mask="url(#tanstack__c)"
+        rx="214.5"
+        ry="185.968"
+      />
+      <ellipse
+        cx="81.5"
+        cy="676.5"
+        fill="#015064"
+        stroke="#007782"
+        strokeWidth="25"
+        mask="url(#tanstack__c)"
+        rx="214.5"
+        ry="185.968"
+      />
+      <ellipse
+        cx="535.5"
+        cy="676.5"
+        fill="#015064"
+        stroke="#007782"
+        strokeWidth="25"
+        mask="url(#tanstack__c)"
+        rx="214.5"
+        ry="185.968"
+      />
+      <g mask="url(#tanstack__c)">
+        <path
+          fill="url(#tanstack__d)"
+          stroke="#6E3A00"
+          strokeWidth="6.088"
+          d="M98.318 88.007c7.691 37.104 16.643 72.442 26.856 106.013 10.212 33.571 25.57 68.934 46.07 106.088l-51.903 11.67c-10.057-60.01-17.232-99.172-21.525-117.487-4.293-18.315-10.989-51.434-20.089-99.357l20.591-6.927"
+          transform="scale(-1 1) rotate(25 -300.37 -553.013)"
+        />
+        <g stroke="#2F8A00">
+          <path
+            fill="url(#tanstack__e)"
+            strokeWidth="9.343"
+            d="M108.544 66.538s-13.54-21.305-37.417-27.785c-15.917-4.321-33.933.31-54.048 13.892C33.464 65.975 47.24 73.52 58.405 75.28c16.749 2.64 50.14-8.74 50.14-8.74Z"
+            transform="rotate(1 -6061.691 5926.397)"
+          />
+          <path
+            fill="url(#tanstack__f)"
+            strokeWidth="9.343"
+            d="M108.544 67.138s-47.187-5.997-81.077 19.936C4.873 104.362-3.782 137.794 1.502 187.369c28.42-29.22 48.758-50.836 61.016-64.846 18.387-21.016 46.026-55.385 46.026-55.385Z"
+            transform="rotate(1 -6061.691 5926.397)"
+          />
+          <path
+            fill="url(#tanstack__g)"
+            strokeWidth="9.343"
+            d="M108.544 66.538c-1.96-21.705 3.98-38.018 17.82-48.94C140.203 6.674 154.85.808 170.303 0c-4.865 21.527-12.373 36.314-22.524 44.361-10.151 8.048-23.23 15.44-39.236 22.177Z"
+            transform="rotate(1 -6061.691 5926.397)"
+          />
+          <path
+            fill="url(#tanstack__h)"
+            strokeWidth="9.343"
+            d="M108.544 67.138c29.838-31.486 61.061-42.776 93.669-33.869C234.82 42.176 253.749 60.785 259 89.096c-34.898-3.657-59.974-6.343-75.228-8.058-15.254-1.716-40.33-6.349-75.228-13.9Z"
+            transform="rotate(1 -6061.691 5926.397)"
+          />
+          <path
+            fill="url(#tanstack__i)"
+            strokeWidth="9.343"
+            d="M108.544 67.138c34.868-9.381 64.503-3.658 88.905 17.17 24.402 20.829 39.656 46.686 45.762 77.571-39.626-7.574-68.4-20.115-86.322-37.624a395.051 395.051 0 0 1-48.345-57.117Z"
+            transform="rotate(1 -6061.691 5926.397)"
+          />
+          <path
+            fill="url(#tanstack__j)"
+            strokeWidth="9.343"
+            d="M108.544 67.138C76.206 82.6 57.608 105.366 52.75 135.436c-4.858 30.07-.292 62.89 13.698 98.462 24.873-41.418 38.905-71.368 42.096-89.849 3.191-18.48 3.191-44.118 0-76.91Z"
+            transform="rotate(1 -6061.691 5926.397)"
+          />
+          <path
+            strokeLinecap="round"
+            strokeWidth="5.91"
+            d="M211.284 173.477c-13.851 21.992-23.291 42.022-28.32 60.093-5.03 18.071-8.175 33.143-9.436 45.216"
+          />
+          <path
+            strokeLinecap="round"
+            strokeWidth="5.91"
+            d="M209.814 176.884c-23.982 2.565-42.792 10.469-56.428 23.714-13.639 13.245-23.483 26.136-29.536 38.674M219.045 167.299c29.028-7.723 50.972-10.173 65.831-7.352 14.859 2.822 26.807 7.659 35.842 14.51M211.31 172.618c20.29 9.106 38.353 19.052 54.186 29.837 15.833 10.786 27.714 20.99 35.643 30.617"
+          />
+        </g>
+        <path
+          stroke="#830305"
+          strokeLinecap="round"
+          strokeLinejoin="bevel"
+          strokeWidth="6.937"
+          d="m409.379 398.157-23.176 18.556M328.04 375.516l-22.313 28.398M312.904 353.698l53.18 59.816"
+        />
+        <path
+          fill="url(#tanstack__k)"
+          d="M67.585 27.463H5.68C1.893 28.148 0 30.38 0 34.16c0 3.78 1.893 6.211 5.68 7.293h67.17l41.751-30.356c2.488-2.646 2.794-5.315.92-8.006s-4.6-3.626-8.177-2.803l-39.76 27.174Z"
+          transform="scale(-1 1) rotate(-9 2092.128 2856.854)"
+        />
+        <path
+          fill="#D8D8D8"
+          stroke="#FFF"
+          strokeLinecap="round"
+          strokeLinejoin="bevel"
+          strokeWidth="4.414"
+          d="m402.861 391.51.471-4.088M382.21 388.752l.472-4.087M361.546 385.404l.485-3.845M337.59 371.883l2.56-2.498M324.276 359.567l2.56-2.497"
+        />
+      </g>
+      <ellipse
+        cx="308.5"
+        cy="720.5"
+        fill="url(#tanstack__l)"
+        mask="url(#tanstack__c)"
+        rx="266"
+        ry="316.5"
+      />
+      <ellipse
+        cx="308.5"
+        cy="720.5"
+        stroke="#6DA300"
+        stroke-opacity=".502"
+        strokeWidth="26"
+        mask="url(#tanstack__c)"
+        rx="253"
+        ry="303.5"
+      />
+      <g mask="url(#tanstack__c)">
+        <g transform="translate(389 -32)">
+          <circle cx="168.5" cy="113.5" r="113.5" fill="url(#tanstack__m)" />
+          <circle
+            cx="168.5"
+            cy="113.5"
+            r="106"
+            stroke="#FFC900"
+            stroke-opacity=".529"
+            strokeWidth="15"
+          />
+          <path
+            stroke="url(#tanstack__n)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="M30 113H0"
+          />
+          <path
+            stroke="url(#tanstack__o)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="M33.5 79.5 7 74"
+          />
+          <path
+            stroke="url(#tanstack__p)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="m34 146-29 8"
+          />
+          <path
+            stroke="url(#tanstack__q)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="m45 177-24 13"
+          />
+          <path
+            stroke="url(#tanstack__r)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="m67 204-20 19"
+          />
+          <path
+            stroke="url(#tanstack__s)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="m94.373 227-13.834 22.847"
+          />
+          <path
+            stroke="url(#tanstack__t)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="M127.5 243.5 120 268"
+          />
+          <path
+            stroke="url(#tanstack__u)"
+            strokeLinecap="round"
+            strokeLinejoin="bevel"
+            strokeWidth="12"
+            d="m167.5 252.5.5 24.5"
+          />
+        </g>
+      </g>
+      <circle cx="307.5" cy="308.5" r="304" stroke="#000" strokeWidth="25" />
+    </g>
+  </svg>
+);
+
+// ✅ shadcnui - agregar width/height
+export const shadcnui = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 256 256" width="1em" height="1em">
+    <path fill="none" d="M0 0h256v256H0z" />
+    <path
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="25"
+      strokeLinecap="round"
+      d="M208 128l-80 80M192 40L40 192"
+    />
+  </svg>
+);
+
+export const shadcnuiDark = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 256 256" width="1em" height="1em">
+    <path fill="none" d="M0 0h256v256H0z" />
+    <path
+      fill="none"
+      stroke="#fff"
+      strokeWidth="25"
+      strokeLinecap="round"
+      d="M208 128l-80 80M192 40L40 192"
+    />
+  </svg>
+);
+
+// ✅ RadixUI - agregar width/height, quitar inline style, fix viewBox
+export const RadixUI = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 25 25" fill="#121212" width="1em" height="1em">
+    <path d="M12 25a8 8 0 1 1 0-16v16zM12 0H4v8h8V0zM17 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+  </svg>
+);
+
+export const RadixUIDark = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 25 25" fill="#fff" width="1em" height="1em">
+    <path d="M12 25a8 8 0 1 1 0-16v16zM12 0H4v8h8V0zM17 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+  </svg>
+);
+
+// ✅ Astro - agregar width/height
+export const Astro = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} fill="none" viewBox="0 0 85 107" width="1em" height="1em">
+    <path
+      fill="#17191E"
+      d="M27.59 91.136c-4.834-4.418-6.246-13.703-4.232-20.429 3.492 4.241 8.33 5.584 13.342 6.343 7.737 1.17 15.336.732 22.523-2.804.822-.405 1.582-.943 2.48-1.489.675 1.957.85 3.932.615 5.943-.573 4.896-3.01 8.678-6.885 11.545-1.55 1.147-3.19 2.172-4.79 3.253-4.917 3.323-6.247 7.22-4.4 12.888.044.139.084.277.183.614-2.51-1.124-4.344-2.76-5.742-4.911-1.475-2.27-2.177-4.78-2.214-7.498-.019-1.322-.019-2.656-.197-3.96-.434-3.178-1.926-4.601-4.737-4.683-2.884-.084-5.166 1.699-5.771 4.507-.046.216-.113.429-.18.68l.004.001ZM0 69.587s14.314-6.973 28.668-6.973L39.49 29.12c.405-1.62 1.588-2.72 2.924-2.72 1.335 0 2.518 1.1 2.924 2.72L56.16 62.614c17 0 28.668 6.973 28.668 6.973S60.514 3.352 60.467 3.219C59.769 1.261 58.591 0 57.003 0H27.827c-1.588 0-2.718 1.261-3.464 3.22C24.311 3.35 0 69.586 0 69.586Z"
+    />
+  </svg>
+);
+
+export const AstroDark = (props: SVGProps<SVGSVGElement>) => {
+  const [gradId] = useUniqueIds(1);
+  return (
+    <svg {...props} fill="none" viewBox="0 0 85 107" width="1em" height="1em">
+      <path
+        fill="#fff"
+        d="M27.59 91.136c-4.834-4.418-6.246-13.703-4.232-20.429 3.492 4.241 8.33 5.584 13.342 6.343 7.737 1.17 15.336.732 22.523-2.804.822-.405 1.582-.943 2.48-1.489.675 1.957.85 3.932.615 5.943-.573 4.896-3.01 8.678-6.885 11.545-1.55 1.147-3.19 2.172-4.79 3.253-4.917 3.323-6.247 7.22-4.4 12.888.044.139.084.277.183.614-2.51-1.124-4.344-2.76-5.742-4.911-1.475-2.27-2.177-4.78-2.214-7.498-.019-1.322-.019-2.656-.197-3.96-.434-3.178-1.926-4.601-4.737-4.683-2.884-.084-5.166 1.699-5.771 4.507-.046.216-.113.429-.18.68l.004.001Z"
+      />
+      <path
+        fill={`url(#${gradId})`}
+        d="M27.59 91.136c-4.834-4.418-6.246-13.703-4.232-20.429 3.492 4.241 8.33 5.584 13.342 6.343 7.737 1.17 15.336.732 22.523-2.804.822-.405 1.582-.943 2.48-1.489.675 1.957.85 3.932.615 5.943-.573 4.896-3.01 8.678-6.885 11.545-1.55 1.147-3.19 2.172-4.79 3.253-4.917 3.323-6.247 7.22-4.4 12.888.044.139.084.277.183.614-2.51-1.124-4.344-2.76-5.742-4.911-1.475-2.27-2.177-4.78-2.214-7.498-.019-1.322-.019-2.656-.197-3.96-.434-3.178-1.926-4.601-4.737-4.683-2.884-.084-5.166 1.699-5.771 4.507-.046.216-.113.429-.18.68l.004.001Z"
+      />
+      <path
+        fill="#fff"
+        d="M0 69.587s14.314-6.973 28.668-6.973L39.49 29.12c.405-1.62 1.588-2.72 2.924-2.72 1.335 0 2.518 1.1 2.924 2.72L56.16 62.614c17 0 28.668 6.973 28.668 6.973S60.514 3.352 60.467 3.219C59.769 1.261 58.591 0 57.003 0H27.827c-1.588 0-2.718 1.261-3.464 3.22C24.311 3.35 0 69.586 0 69.586Z"
+      />
+      <defs>
+        <linearGradient
+          id={gradId}
+          x1="22.47"
+          x2="69.145"
+          y1="107"
+          y2="84.947"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#D83333" />
+          <stop offset="1" stopColor="#F041FF" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+// ✅ DarkDeno - normalizar viewBox a 401 como Deno
+export const DarkDeno = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlSpace="preserve"
+    fillRule="evenodd"
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+    clipRule="evenodd"
+    viewBox="0 0 401 401"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      fill="#fff"
+      d="M200.5 0C89.8 0 0 89.8 0 200.5S89.8 401 200.5 401 401 311.2 401 200.5 311.2 0 200.5 0Zm51.2 264.9c-13.9-.7-27.6-3-38.6-4.9-8.4-1.4-16.3-3.6-22.9-5.8a2.6 2.6 0 0 0-2.9.9c-.7.9-.8 2.2 0 3 3.1 3.4 12.9 10.5 20.4 13.8-6.5 5.4-10.9 17.6-12.7 24-2.3 8.5-2.7 20.8-2.1 25.3 2.3 18.1 9 34.4 25.5 48.6 11.5 10 28.3 16.8 45.4 17.1 23.6.4 51.9-9.7 74.1-32.5 29-31.8 48-73.2 51.6-119.4 8.4-110.1-74.1-206.3-184.1-214.7C115.4 9.3 19.2 91.8 10.8 201.9c-4.4 57 15.6 110.3 51.3 149.6a3.2 3.2 0 0 0 5.4-3c-26.4-103.5 31-215.2 94.9-250.5 23.8-13.1 46.9-18.1 67.7-9.7 31.8 12.9 50 34.2 89.4 52.2 39.4 18 43.6 47.9 32.6 78.1-11 30.2-46.4 45.4-80.2 43.8Zm-68.9-160.1c-12.9 1-21.4 17-22.5 27.3-1.1 10.3 4 27.2 20.8 26.9 19.7-.4 25.7-17.2 23.5-33.6-1.6-12.2-11-21.4-21.8-20.6Z"
+    />
+  </svg>
+);
+
+// ✅ Neon - agregar width/height + fix stop-opacity → stopOpacity para React
+export const Neon = (props: SVGProps<SVGSVGElement>) => {
+  const [gradA, gradB] = useUniqueIds(2);
+  return (
+    <svg {...props} viewBox="0 0 256 256" preserveAspectRatio="xMidYMid" width="1em" height="1em">
+      <defs>
+        <linearGradient id={gradA} x1="100%" x2="12.069%" y1="100%" y2="0%">
+          <stop offset="0%" stopColor="#62F755" />
+          <stop offset="100%" stopColor="#8FF986" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id={gradB} x1="100%" x2="40.603%" y1="100%" y2="76.897%">
+          <stop offset="0%" stopOpacity=".9" />
+          <stop offset="100%" stopColor="#1A1A1A" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="#00E0D9"
+        d="M0 44.139C0 19.762 19.762 0 44.139 0H211.86C236.238 0 256 19.762 256 44.139v142.649c0 25.216-31.915 36.16-47.388 16.256l-48.392-62.251v75.484c0 21.939-17.784 39.723-39.722 39.723h-76.36C19.763 256 0 236.238 0 211.861V44.14Zm44.139-8.825c-4.879 0-8.825 3.946-8.825 8.818v167.73c0 4.878 3.946 8.831 8.818 8.831h77.688c2.44 0 3.087-1.977 3.087-4.416v-101.22c0-25.222 31.914-36.166 47.395-16.255l48.391 62.243V44.14c0-4.879.455-8.825-4.416-8.825H44.14Z"
+      />
+      <path
+        fill={`url(#${gradA})`}
+        d="M0 44.139C0 19.762 19.762 0 44.139 0H211.86C236.238 0 256 19.762 256 44.139v142.649c0 25.216-31.915 36.16-47.388 16.256l-48.392-62.251v75.484c0 21.939-17.784 39.723-39.722 39.723h-76.36C19.763 256 0 236.238 0 211.861V44.14Zm44.139-8.825c-4.879 0-8.825 3.946-8.825 8.818v167.73c0 4.878 3.946 8.831 8.818 8.831h77.688c2.44 0 3.087-1.977 3.087-4.416v-101.22c0-25.222 31.914-36.166 47.395-16.255l48.391 62.243V44.14c0-4.879.455-8.825-4.416-8.825H44.14Z"
+      />
+      <path
+        fill={`url(#${gradB})`}
+        fillOpacity=".4"
+        d="M0 44.139C0 19.762 19.762 0 44.139 0H211.86C236.238 0 256 19.762 256 44.139v142.649c0 25.216-31.915 36.16-47.388 16.256l-48.392-62.251v75.484c0 21.939-17.784 39.723-39.722 39.723h-76.36C19.763 256 0 236.238 0 211.861V44.14Zm44.139-8.825c-4.879 0-8.825 3.946-8.825 8.818v167.73c0 4.878 3.946 8.831 8.818 8.831h77.688c2.44 0 3.087-1.977 3.087-4.416v-101.22c0-25.222 31.914-36.166 47.395-16.255l48.391 62.243V44.14c0-4.879.455-8.825-4.416-8.825H44.14Z"
+      />
+      <path
+        fill="#63F655"
+        d="M211.861 0C236.238 0 256 19.762 256 44.139v142.649c0 25.216-31.915 36.16-47.388 16.256l-48.392-62.251v75.484c0 21.939-17.784 39.723-39.722 39.723a4.409 4.409 0 0 0 4.409-4.409V115.058c0-25.223 31.914-36.167 47.395-16.256l48.391 62.243V8.825c0-4.871-3.953-8.825-8.832-8.825Z"
+      />
+    </svg>
+  );
+};
