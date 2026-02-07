@@ -1,19 +1,18 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import '@/styles/globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Varela_Round } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const varelaRound = Varela_Round({
-  weight: '400',
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-varela-round',
+  variable: '--font-inter',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={varelaRound.variable}>
-      <body className={varelaRound.className}>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -27,4 +26,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
