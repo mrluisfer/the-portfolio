@@ -18,7 +18,6 @@ export default function Profile() {
           <AboutMe />
         </div>
       </Container>
-      <hr />
     </>
   );
 }

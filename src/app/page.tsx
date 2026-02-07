@@ -1,3 +1,4 @@
+import { SharedFooter } from '@/components/shared/footer';
 import Navigation from '@/components/shared/navigation';
 import type { Metadata } from 'next';
 import Script from 'next/script';
@@ -439,6 +440,8 @@ export default function Page() {
 
         {/* Navigation */}
         <Navigation />
+
+        <SharedFooter position='relative' className='mb-20' />
       </main>
     </>
   );

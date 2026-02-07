@@ -4,7 +4,7 @@ enum SocialMediaLinks {
   LINKEDIN = 'https://www.linkedin.com/in/mrluisfer',
   DEVTO = 'https://dev.to/mrluisfer',
   GITLAB = 'https://gitlab.com/mrLuisFer',
-  BENTO = 'https://bento.me/mrluisfer',
+  BENTO = 'https://bento-mrluisfer.vercel.app/',
   SPOTIFY = 'https://open.spotify.com/playlist/49spccWMHTuffh4NQiR4RN',
   DAILYDEV = 'https://app.daily.dev/mrluisfer',
 }
