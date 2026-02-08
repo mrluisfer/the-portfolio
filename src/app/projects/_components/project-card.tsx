@@ -54,10 +54,7 @@ export function ProjectCard({ project }: { project: ProjectType }) {
         transition={{ duration: 0.4, ease: EASE }}
         className="relative h-full"
       >
-        <Card className="group relative h-full overflow-hidden border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-2xl hover:shadow-neutral-300/30 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700 dark:hover:shadow-2xl dark:hover:shadow-black/40">
-          {/* Accent bar on top */}
-          <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
+        <Card className="group relative h-full overflow-hidden border-2 border-neutral-200 bg-white pt-0 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-2xl hover:shadow-neutral-300/30 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700 dark:hover:shadow-2xl dark:hover:shadow-black/40">
           {/* Cover Image with Action Buttons */}
           <CardContent className="relative p-0">
             <motion.div

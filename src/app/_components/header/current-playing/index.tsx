@@ -80,7 +80,9 @@ export default function CurrentPlaying() {
                     loop={false}
                   />
                 </div>
-                <p className="text-xs font-semibold text-white drop-shadow">Listen Now</p>
+                <p className="text-foreground text-xs font-semibold drop-shadow dark:text-white">
+                  Listen Now
+                </p>
               </Link>
             </Badge>
 

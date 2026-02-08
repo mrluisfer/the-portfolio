@@ -1,6 +1,6 @@
 'use client';
 
-import { GithubDark } from '@/assets/icons/allIcons';
+import { GitHub, GithubDark } from '@/assets/icons/allIcons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getSlugFromString } from '@/utils/get-slug-from-string';
@@ -66,7 +66,8 @@ export const Project = ({ className, project }: { className?: string; project: P
                 rel="noopener noreferrer"
                 aria-label={`View ${project.name} source code on GitHub`}
               >
-                <GithubDark className="h-3.5 w-3.5" aria-hidden="true" />
+                <GitHub className="block h-3.5 w-3.5 dark:hidden" aria-hidden="true" />
+                <GithubDark className="hidden h-3.5 w-3.5 dark:block" aria-hidden="true" />
               </Link>
             </Button>
             {project.previewUrl && (

@@ -25,21 +25,17 @@ export const Quote = () => {
           </h2>
         </Title>
 
-        <p className="mx-auto mt-6 max-w-2xl text-center leading-relaxed opacity-60">
-          Embrace the challenges, learn from failures, and celebrate successes along the way.
-        </p>
-
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button variant={'default'} asChild size={'lg'} className="dark:text-white">
+          <Button variant={'outline'} asChild size={'lg'} className="dark:text-white">
             <Link href={`#${NAVIGATION_NAMES.PROJECTS}`}>
               <FolderRootIcon />
-              See projects
+              See my projects
             </Link>
           </Button>
-          <Button variant={'outline'} asChild size={'lg'}>
+          <Button variant={'default'} asChild size={'lg'}>
             <Link href={`#${NAVIGATION_NAMES.CONNECT}`}>
               <BookUserIcon />
-              Contact
+              Contact me
             </Link>
           </Button>
         </div>

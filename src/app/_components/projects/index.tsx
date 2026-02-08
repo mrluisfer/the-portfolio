@@ -41,7 +41,7 @@ export function Projects() {
           <Button asChild variant="outline" size="lg" className="group w-full sm:w-auto">
             <Link href="/projects">
               <FolderRootIcon className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
-              Explore All Projects
+              View all projects
             </Link>
           </Button>
         </motion.div>
