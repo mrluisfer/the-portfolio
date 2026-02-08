@@ -14,17 +14,37 @@ import React from 'react';
 
 const navigationItems = Object.values(NAVIGATION_NAMES);
 
-export default function Navigation() {
-  // Respeta preferencias de accesibilidad
-  const prefersReducedMotion = useReducedMotion();
+type IndicatorLayout = { left: number; width: number; top: number; height: number };
 
-  // Mostrar el botón "arriba" cuando haya desplazamiento
+export default function Navigation() {
+  const prefersReducedMotion = useReducedMotion();
+  const listContainerRef = React.useRef<HTMLDivElement>(null);
+  const [indicatorLayout, setIndicatorLayout] = React.useState<IndicatorLayout | null>(null);
+
   const { scrollY } = useScroll();
   const [showToTop, setShowToTop] = React.useState(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setShowToTop(latest > 200);
   });
+
+  const updateIndicator = React.useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const link = e.currentTarget;
+    const container = listContainerRef.current;
+    if (!container) return;
+    const linkRect = link.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    setIndicatorLayout({
+      left: linkRect.left - containerRect.left,
+      width: linkRect.width,
+      top: linkRect.top - containerRect.top,
+      height: linkRect.height,
+    });
+  }, []);
+
+  const clearIndicator = React.useCallback(() => {
+    setIndicatorLayout(null);
+  }, []);
 
   const handleNavigationClick = React.useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -58,10 +78,10 @@ export default function Navigation() {
           'border backdrop-blur-xl backdrop-saturate-150',
           'sm:w-auto sm:max-w-[720px] sm:rounded-full sm:px-4 sm:py-2.5 md:max-w-[800px] lg:max-w-[1000px]',
           // Light: glass sutil + neón
-          'border-white/20 bg-white/80 shadow-primary/5 ring-1 ring-primary/10',
-          'hover:border-primary/30 hover:shadow-primary/15 hover:shadow-2xl hover:ring-primary/20',
+          'shadow-primary/5 ring-primary/10 border-white/20 bg-white/80 ring-1',
+          'hover:border-primary/30 hover:shadow-primary/15 hover:ring-primary/20 hover:shadow-2xl',
           // Dark: glass oscuro tipo simple-navigation
-          'dark:border-white/10 dark:bg-black/70 dark:ring-primary/15',
+          'dark:ring-primary/15 dark:border-white/10 dark:bg-black/70',
           'dark:hover:border-primary/40 dark:hover:ring-primary/25'
         )}
       >
@@ -69,7 +89,7 @@ export default function Navigation() {
         <div
           className={cn(
             'pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-xl transition-opacity duration-300 sm:rounded-full',
-            'bg-gradient-to-r from-primary/25 via-primary/15 to-transparent',
+            'from-primary/25 via-primary/15 bg-gradient-to-r to-transparent',
             'group-hover/pill:opacity-100'
           )}
           aria-hidden
@@ -83,7 +103,7 @@ export default function Navigation() {
               className={cn(
                 'relative z-10 hidden h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-200 ease-out',
                 'bg-muted/80 text-foreground hover:bg-primary/20 hover:text-primary',
-                'hover:shadow-lg hover:shadow-primary/30 hover:ring-1 hover:ring-primary/30',
+                'hover:shadow-primary/30 hover:ring-primary/30 hover:shadow-lg hover:ring-1',
                 'dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 dark:hover:text-white',
                 'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
                 'lg:flex'
@@ -101,7 +121,40 @@ export default function Navigation() {
           )}
         </AnimatePresence>
 
-        <div className="relative z-10 flex min-w-0 flex-1 items-center">
+        <div
+          ref={listContainerRef}
+          className="relative z-10 flex min-w-0 flex-1 items-center"
+          onMouseLeave={clearIndicator}
+        >
+          {/* Indicador que se desliza de un ítem a otro al hacer hover */}
+          <AnimatePresence>
+            {indicatorLayout && (
+              <motion.span
+                className={cn(
+                  'pointer-events-none absolute rounded-full',
+                  'bg-primary/15 dark:bg-white/10',
+                  'ring-primary/20 ring-1 dark:ring-white/15'
+                )}
+                aria-hidden
+                initial={false}
+                animate={{
+                  left: indicatorLayout.left,
+                  width: indicatorLayout.width,
+                  top: indicatorLayout.top,
+                  height: indicatorLayout.height,
+                }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  type: prefersReducedMotion ? 'tween' : 'spring',
+                  stiffness: 400,
+                  damping: 30,
+                  duration: prefersReducedMotion ? 0.01 : undefined,
+                }}
+                style={{ willChange: prefersReducedMotion ? 'auto' : 'left, width' }}
+              />
+            )}
+          </AnimatePresence>
+
           <ul
             className="flex w-full items-center gap-1.5 overflow-x-auto overscroll-x-contain scroll-smooth text-sm [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 sm:overflow-visible [&::-webkit-scrollbar]:hidden"
             role="menubar"
@@ -110,22 +163,18 @@ export default function Navigation() {
               <li key={item} role="none">
                 <motion.a
                   role="menuitem"
-                  onClick={handleNavigationClick}
                   href={`/#${item}`}
+                  onClick={handleNavigationClick}
+                  onMouseEnter={updateIndicator}
                   className={cn(
-                    'group/link block min-w-[88px] rounded-full px-3 py-2.5 text-center capitalize transition-all duration-200 ease-out select-none',
-                    'text-muted-foreground hover:text-foreground hover:scale-[1.02]',
-                    'bg-transparent hover:bg-primary/10',
-                    'border border-transparent hover:border-primary/30',
-                    'hover:shadow-lg hover:shadow-primary/25 hover:ring-1 hover:ring-primary/25',
-                    'dark:text-white/80 dark:hover:text-white dark:hover:bg-white/10',
+                    'relative z-10 block min-w-[88px] rounded-full px-3 py-2.5 text-center capitalize transition-colors duration-200 select-none',
+                    'text-muted-foreground hover:text-foreground',
+                    'dark:text-white/80 dark:hover:text-white',
                     'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
                     'active:scale-[0.98]',
-                    // Touch target mínimo 44px
                     'flex min-h-[44px] items-center justify-center sm:min-h-[40px]'
                   )}
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-                  whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
                 >
                   {item}
                 </motion.a>

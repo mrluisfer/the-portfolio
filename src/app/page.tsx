@@ -1,16 +1,22 @@
-import { SharedFooter } from '@/components/shared/footer';
-import Navigation from '@/components/shared/navigation';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import About from './_components/about';
-import Connect from './_components/connect';
-import Grid from './_components/grid';
 import Hero from './_components/hero';
-import Profile from './_components/profile';
-import { Projects } from './_components/projects';
-import { Quote } from './_components/quote';
-import Skills from './_components/skills';
 import Terminal from './_components/terminal';
+
+// Below-the-fold sections: code-split to reduce initial JS parse and improve TTI
+const Connect = dynamic(() => import('./_components/connect').then((m) => m.default), { ssr: true });
+const Grid = dynamic(() => import('./_components/grid').then((m) => m.default), { ssr: true });
+const Profile = dynamic(() => import('./_components/profile').then((m) => m.default), { ssr: true });
+const Projects = dynamic(() => import('./_components/projects').then((m) => ({ default: m.Projects })), { ssr: true });
+const Quote = dynamic(() => import('./_components/quote').then((m) => ({ default: m.Quote })), { ssr: true });
+const SharedFooter = dynamic(
+  () => import('@/components/shared/footer').then((m) => ({ default: m.SharedFooter })),
+  { ssr: true }
+);
+const Navigation = dynamic(() => import('@/components/shared/navigation'), { ssr: true });
+const Skills = dynamic(() => import('./_components/skills').then((m) => m.default), { ssr: true });
 
 // Constants for reusability and maintainability
 const SITE_URL = 'https://mrluisfer.vercel.app';
@@ -371,19 +377,19 @@ export default function Page() {
         id="json-ld-person"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
       <Script
         id="json-ld-webpage"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
       <Script
         id="json-ld-profile"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProfilePage) }}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
 
       <main

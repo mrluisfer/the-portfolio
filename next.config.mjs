@@ -11,6 +11,12 @@ const nextConfig = {
   },
   experimental: {
     globalNotFound: true,
+    // Reduce bundle size: only bundle icons that are actually imported
+    optimizePackageImports: [
+      'lucide-react',
+      '@remixicon/react',
+      'react-icons',
+    ],
   },
 };
 

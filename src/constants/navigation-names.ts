@@ -1,6 +1,6 @@
 export const NAVIGATION_NAMES = {
   ABOUT: 'about',
-  TERMINAL: 'terminal',
+  TERMINAL: 'Terminal',
   SKILLS: 'skills',
   PROJECTS: 'projects',
   PRINCIPLES: 'principles',

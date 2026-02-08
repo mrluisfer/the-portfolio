@@ -3,8 +3,6 @@
 import { Spotify, SpotifyDark } from '@/assets/icons/allIcons';
 import { Badge } from '@/components/ui/badge';
 import SocialMediaLinks from '@/constants/social-media-links';
-import spotifyAnimationData from '@/lotties/spotify.json';
-import Lottie, { type LottieRefCurrentProps } from 'lottie-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -38,53 +36,70 @@ const ALBUMS = [
   },
 ];
 
-export default function CurrentPlaying() {
-  const spotifyRefAnimationData = useRef<LottieRefCurrentProps>(null);
+/** Contenido del popover: solo se monta al abrir, y carga Lottie + JSON bajo demanda */
+function CurrentPlayingPopoverContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [LottieEl, setLottieEl] = useState<React.ReactNode>(null);
+  const lottieRef = useRef(null);
 
-  // ⏰ Cambia la imagen cada 10 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % ALBUMS.length);
-    }, 10000); // 10 segundos
+    }, 10000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Carga diferida de Lottie y del JSON solo cuando el popover está abierto
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([
+      import('lottie-react'),
+      import('@/lotties/spotify.json'),
+    ]).then(([lottieModule, dataModule]) => {
+      if (cancelled) return;
+      const Lottie = lottieModule.default;
+      const data = dataModule.default as object;
+      setLottieEl(
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={data}
+          className="absolute left-0 h-fit w-fit transform"
+          autoplay={false}
+          loop={false}
+        />
+      );
+    });
+    return () => { cancelled = true; };
   }, []);
 
   const currentAlbum = ALBUMS[currentIndex];
 
   return (
-    <Popover>
-      <div className="relative h-[300px] w-[300px] overflow-hidden rounded-xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentAlbum.image}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-cover bg-center"
-            style={{ backgroundImage: `url(${currentAlbum.image})` }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2 }}
+    <div className="relative h-[300px] w-[300px] overflow-hidden rounded-xl">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentAlbum.image}
+          className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-cover bg-center"
+          style={{ backgroundImage: `url(${currentAlbum.image})` }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+        >
+          <Badge
+            asChild
+            variant="secondary"
+            className="absolute top-3 left-3 flex items-center gap-2"
           >
-            <Badge
-              asChild
-              variant={'secondary'}
-              className="absolute top-3 left-3 flex items-center gap-2"
-            >
-              <Link href={currentAlbum.url} target="_blank" rel="noopener noreferrer">
-                <div className="relative h-5 w-5 overflow-hidden">
-                  <Lottie
-                    lottieRef={spotifyRefAnimationData}
-                    animationData={spotifyAnimationData}
-                    className="absolute left-0 h-fit w-fit transform"
-                    autoplay={false}
-                    loop={false}
-                  />
-                </div>
-                <p className="text-foreground text-xs font-semibold drop-shadow dark:text-white">
-                  Listen Now
-                </p>
-              </Link>
-            </Badge>
+            <Link href={currentAlbum.url} target="_blank" rel="noopener noreferrer">
+              <div className="relative h-5 w-5 overflow-hidden">
+                {LottieEl}
+              </div>
+              <p className="text-foreground text-xs font-semibold drop-shadow dark:text-white">
+                Listen Now
+              </p>
+            </Link>
+          </Badge>
 
             <motion.div
               className="absolute bottom-5 w-[280px] rounded-xl bg-yellow-500/10 px-4 py-3 text-white backdrop-blur-md"
@@ -94,13 +109,24 @@ export default function CurrentPlaying() {
               <p className="text-sm">{currentAlbum.author}</p>
             </motion.div>
           </motion.div>
-        </AnimatePresence>
-      </div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default function CurrentPlaying() {
+  return (
+    <Popover>
+      {(isOpen) => (isOpen ? <CurrentPlayingPopoverContent /> : null)}
     </Popover>
   );
 }
 
-function Popover({ children }: { children: ReactNode }) {
+function Popover({
+  children,
+}: {
+  children: (isOpen: boolean) => ReactNode;
+}) {
   const [showPopover, setShowPopover] = useState(false);
   const { theme } = useTheme();
   const useDarkIcon = theme === 'dark' || theme === 'system';
@@ -131,7 +157,7 @@ function Popover({ children }: { children: ReactNode }) {
               transition={{ duration: 0.15 }}
               key="box"
             >
-              {children}
+              {children(showPopover)}
             </motion.div>
           )}
         </AnimatePresence>
