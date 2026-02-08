@@ -23,7 +23,6 @@ const variants = [
     color: 'text-red-600 dark:text-red-400',
     message: 'T1 Fighting!',
   }, // Coreano
-  { text: 'אלווארז', emoji: '✡️', color: 'text-blue-600 dark:text-blue-300', rtl: true }, // Hebreo
   { text: 'Άλβαρεθ', emoji: '🏛️', color: 'text-cyan-700 dark:text-cyan-400', message: 'Yassou!' }, // Griego
   {
     text: 'อัลวาเรซ',
@@ -42,7 +41,6 @@ const variants = [
     text: 'アルバレス',
     emoji: '🎌',
     color: 'text-rose-600 dark:text-rose-400',
-    message: '{ code }',
   }, // Japonés (variante)
   {
     text: 'Алварес',
