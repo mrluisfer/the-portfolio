@@ -19,7 +19,7 @@ export default function SocialLinks() {
       {SOCIAL_LINKS.map((link, id) => {
         const iconNode = isDark ? (link.DarkIcon ?? link.LightIcon) : link.LightIcon;
         return (
-          <SocialLink key={id} href={link.href} alt={link.alt}>
+          <SocialLink key={id} href={link.href} alt={link.alt} hoverClassName={link.hoverClassName}>
             {iconNode}
           </SocialLink>
         );

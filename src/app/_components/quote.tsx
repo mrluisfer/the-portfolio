@@ -32,7 +32,7 @@ export const Quote = () => {
               See my projects
             </Link>
           </Button>
-          <Button variant={'default'} asChild size={'lg'}>
+          <Button variant={'default'} asChild size={'lg'} className="dark:text-white">
             <Link href={`#${NAVIGATION_NAMES.CONNECT}`}>
               <BookUserIcon />
               Contact me

@@ -5,7 +5,6 @@ import SocialLinks from '@/components/social-links';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useEffect, useState } from 'react';
 import CurrentPlaying from './current-playing';
-import CurrentTime from './current-time';
 import Logo from './logo';
 
 const DESKTOP_BREAKPOINT = 768; // Tailwind md
@@ -57,28 +56,21 @@ export default function Header() {
               : 'border-transparent bg-transparent'
           } `}
         >
-          {/* Gradient border superior sutil */}
           <div
             className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transition-opacity duration-300 dark:via-blue-500/20 ${isStickyWithBlur ? 'opacity-100' : 'opacity-0'} `}
           />
 
           <Container>
-            <header className="relative z-10 mx-auto flex items-center gap-3 px-2 py-2.5 sm:gap-4 sm:px-4 sm:py-3 lg:pr-4 lg:pl-0 xl:px-0">
+            <header className="relative z-10 mx-auto flex items-baseline gap-3 px-2 py-2.5 sm:gap-4 sm:px-4 sm:py-3 md:items-center lg:pr-4 lg:pl-0 xl:px-0">
               <div className="flex shrink-0 items-center lg:flex-1 lg:justify-start">
                 <Logo />
               </div>
               <div className="flex min-w-0 flex-1 justify-center lg:justify-end">
-                <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 lg:justify-end">
+                <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:flex-nowrap lg:justify-end lg:gap-4">
                   <CurrentPlaying />
                   <SocialLinks />
-                  <div className="hidden sm:block">
-                    <ThemeToggle />
-                  </div>
-                  <CurrentTime />
+                  <ThemeToggle />
                 </nav>
-              </div>
-              <div className="block shrink-0 sm:hidden">
-                <ThemeToggle />
               </div>
             </header>
           </Container>
