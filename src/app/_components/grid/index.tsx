@@ -27,12 +27,12 @@ export default function Grid() {
           </Card>
 
           {/* Sharing */}
-          <Card className="h-fit w-full md:justify-start lg:row-span-3 lg:row-start-4">
+          <Card className="h-fit w-full md:w-fit md:justify-start lg:row-span-3 lg:row-start-4">
             <Sharing />
           </Card>
 
           {/* Phrase */}
-          <Card className="w-full lg:col-start-2 lg:row-start-4">
+          <Card className="w-full md:w-fit lg:col-start-2 lg:row-start-4">
             <Phrase />
           </Card>
         </div>
