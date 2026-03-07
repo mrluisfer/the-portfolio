@@ -95,30 +95,39 @@ export default function Navigation() {
           aria-hidden
         />
         <AnimatePresence mode="wait">
-          {showToTop && (
-            <motion.button
-              key="goToTop"
-              type="button"
-              onClick={handleScrollTop}
-              className={cn(
-                'relative z-10 hidden h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-200 ease-out',
-                'bg-muted/80 text-foreground hover:bg-primary/20 hover:text-primary',
-                'hover:shadow-primary/30 hover:ring-primary/30 hover:shadow-lg hover:ring-1',
-                'dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 dark:hover:text-white',
-                'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-                'lg:flex'
-              )}
-              title="Ir arriba"
-              aria-label="Ir al comienzo de la página"
-              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8, y: 6 }}
-              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8, y: 6 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ArrowUpIcon className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
-            </motion.button>
-          )}
+          <motion.button
+            key="goToTop"
+            type="button"
+            onClick={handleScrollTop}
+            className={cn(
+              'relative z-10 hidden h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-200 ease-out',
+              'bg-muted/80 text-foreground hover:bg-primary/20 hover:text-primary',
+              'hover:shadow-primary/30 hover:ring-primary/30 hover:shadow-lg hover:ring-1',
+              'dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 dark:hover:text-white',
+              'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+              'disabled:hover:bg-muted/80 disabled:hover:text-foreground disabled:cursor-default disabled:opacity-40 disabled:hover:shadow-none disabled:hover:ring-0',
+              'dark:disabled:hover:bg-white/5 dark:disabled:hover:text-white/90',
+              'lg:flex'
+            )}
+            title="Ir arriba"
+            aria-label="Ir al comienzo de la página"
+            initial={prefersReducedMotion ? { opacity: 0.4 } : { opacity: 0.4, scale: 0.96, y: 2 }}
+            animate={
+              prefersReducedMotion
+                ? { opacity: showToTop ? 1 : 0.4 }
+                : {
+                    opacity: showToTop ? 1 : 0.4,
+                    scale: showToTop ? 1 : 0.96,
+                    y: showToTop ? 0 : 2,
+                  }
+            }
+            exit={prefersReducedMotion ? { opacity: 0.4 } : { opacity: 0.4, scale: 0.96, y: 2 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+            whileTap={showToTop ? { scale: 0.95 } : undefined}
+            disabled={!showToTop}
+          >
+            <ArrowUpIcon className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
+          </motion.button>
         </AnimatePresence>
 
         <div
