@@ -142,10 +142,10 @@ export default function Technologies() {
   }, [normalizeScrollPosition, pauseAutoScroll]);
 
   return (
-    <div className="mask-fade-x justify-center pt-[100px] sm:py-0 lg:py-12">
-      <p className="text-muted-foreground mb-4 flex items-center justify-center gap-2 text-center text-xs sm:text-sm">
-        <ArrowLeftRightIcon className="h-4 w-4" aria-hidden />
-        Scroll manually. When idle, the carousel loops automatically.
+    <div className="pt-[100px] sm:py-0 lg:py-12">
+      <p className="text-muted-foreground mb-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 text-center text-xs sm:text-sm">
+        <ArrowLeftRightIcon className="h-4 w-4 shrink-0" aria-hidden />
+        <span>Scroll manually. When idle, the carousel loops automatically.</span>
       </p>
 
       <div
@@ -170,7 +170,7 @@ export default function Technologies() {
           pauseAutoScroll(1800);
         }}
         className={cn(
-          'focus-visible:ring-primary/40 focus-visible:ring-offset-background overflow-x-auto rounded-lg pb-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+          'mask-fade-x focus-visible:ring-primary/40 focus-visible:ring-offset-background overflow-x-auto rounded-lg pb-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
           '[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
         )}
       >
