@@ -96,7 +96,13 @@ const AboutMe = () => {
         >
           {['Team Player', 'Detail-Oriented', 'Fast Learner', 'Problem Solver'].map(
             (trait, index) => (
-              <Badge key={trait} variant={'outline'} role="listitem" itemProp="knowsAbout">
+              <Badge
+                key={trait}
+                variant={'outline'}
+                role="listitem"
+                itemProp="knowsAbout"
+                className="cursor-default transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/40 hover:bg-muted/60 hover:shadow-sm"
+              >
                 {trait}
               </Badge>
             )

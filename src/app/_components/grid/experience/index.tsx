@@ -7,17 +7,11 @@ import Link from 'next/link';
 export default function Experience() {
   return (
     <div className="group/experience relative flex w-full flex-1 flex-col justify-center overflow-hidden rounded-[inherit] p-2">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50/50 to-indigo-100/80 transition-opacity duration-500 group-hover/experience:opacity-90 dark:from-slate-900 dark:via-blue-950/40 dark:to-indigo-950/60" />
-
-      {/* Animated gradient overlay */}
+      {/* Animated ambient glow */}
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/experience:opacity-100">
-        <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-blue-400/20 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-cyan-400/20 blur-3xl" />
+        <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-zinc-400/15 blur-3xl dark:bg-zinc-100/[0.04]" />
+        <div className="absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-zinc-400/15 blur-3xl dark:bg-zinc-100/[0.04]" />
       </div>
-
-      {/* Subtle border gradient */}
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-blue-200/50 ring-inset dark:ring-blue-400/10" />
 
       <ScrollArea
         type={'always'}
@@ -29,11 +23,14 @@ export default function Experience() {
             variant={'outline'}
             asChild
             size={'sm'}
-            className="transition-all hover:border-blue-400 hover:text-blue-600 dark:hover:border-blue-500 dark:hover:text-blue-400"
+            className="group rounded-xl transition-all hover:shadow-md active:scale-[0.98]"
           >
             <Link href="/projects#experience">
               View detailed experience
-              <ArrowRightIcon size={14} />
+              <ArrowRightIcon
+                size={14}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
             </Link>
           </Button>
         </div>

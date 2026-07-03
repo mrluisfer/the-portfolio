@@ -136,7 +136,12 @@ const Experience = () => {
             'Code Reviews',
             'Web Performance',
           ].map((tag, index) => (
-            <Badge variant={'outline'} key={tag} role="listitem">
+            <Badge
+              variant={'outline'}
+              key={tag}
+              role="listitem"
+              className="cursor-default transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/40 hover:bg-muted/60 hover:shadow-sm"
+            >
               {tag}
             </Badge>
           ))}

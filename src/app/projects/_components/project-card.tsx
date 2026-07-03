@@ -148,12 +148,12 @@ export function ProjectCard({ project }: { project: ProjectType }) {
                   rel="noopener noreferrer"
                   className="group/link inline-flex items-center gap-2.5 text-xl font-bold text-neutral-900 transition-all sm:text-2xl dark:text-neutral-100"
                 >
-                  <span className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-700 bg-clip-text transition-all group-hover/link:from-blue-600 group-hover/link:via-purple-600 group-hover/link:to-pink-600 dark:from-neutral-100 dark:via-neutral-200 dark:to-neutral-300 dark:group-hover/link:from-blue-400 dark:group-hover/link:via-purple-400 dark:group-hover/link:to-pink-400">
+                  <span className="transition-colors group-hover/link:text-neutral-600 dark:group-hover/link:text-neutral-400">
                     {project.name}
                   </span>
                   <ExternalLink
                     size={18}
-                    className="flex-shrink-0 text-neutral-400 transition-all group-hover/link:translate-x-1 group-hover/link:-translate-y-1 group-hover/link:text-blue-600 dark:text-neutral-600 dark:group-hover/link:text-blue-400"
+                    className="flex-shrink-0 text-neutral-400 transition-all group-hover/link:translate-x-1 group-hover/link:-translate-y-1 group-hover/link:text-neutral-700 dark:text-neutral-600 dark:group-hover/link:text-neutral-300"
                   />
                 </Link>
               </motion.div>
@@ -198,7 +198,7 @@ export function ProjectCard({ project }: { project: ProjectType }) {
                 >
                   <Badge
                     variant="secondary"
-                    className="border-2 border-neutral-300 bg-gradient-to-br from-neutral-50 to-neutral-100 px-3 py-1 text-sm font-semibold text-neutral-800 shadow-sm transition-all hover:border-neutral-400 hover:shadow-md dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-600"
+                    className="relative isolate overflow-hidden border-2 border-neutral-300 bg-transparent px-3 py-1 text-sm font-semibold text-neutral-800 shadow-sm transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-foreground before:transition-transform before:duration-300 before:ease-out hover:border-transparent hover:text-background hover:before:scale-x-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:text-background"
                   >
                     {t}
                   </Badge>

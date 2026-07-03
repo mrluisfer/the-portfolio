@@ -9,7 +9,7 @@ export default function Skills() {
   return (
     <Container>
       <div
-        className={cn('technologies-shadow-y general-pattern my-6 p-10')}
+        className={cn('technologies-shadow-y general-pattern my-4 p-6 sm:p-10')}
         id={NAVIGATION_NAMES.SKILLS}
       >
         <Title>

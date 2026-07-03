@@ -1,3 +1,4 @@
+import Reveal from '@/components/reveal';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
@@ -401,53 +402,71 @@ export default function Page() {
       >
         {/* Hero Section */}
         <section aria-label="Introduction" id="hero">
-          <Hero />
+          <Reveal>
+            <Hero />
+          </Reveal>
         </section>
 
         {/* About Section */}
         <section aria-label="About me" id="about">
-          <About />
+          <Reveal>
+            <About />
+          </Reveal>
         </section>
 
         {/* Interactive Terminal */}
         <section aria-label="Interactive terminal" id="terminal">
-          <Terminal />
+          <Reveal>
+            <Terminal />
+          </Reveal>
         </section>
 
         {/* Skills Section */}
         <section aria-label="Technical skills" id="skills">
-          <Skills />
+          <Reveal>
+            <Skills />
+          </Reveal>
         </section>
 
         {/* Projects Section */}
         <section aria-label="Featured projects" id="projects">
-          <Projects />
+          <Reveal>
+            <Projects />
+          </Reveal>
         </section>
 
         {/* Grid/Bento Section */}
         <section aria-label="Additional information" id="grid">
-          <Grid />
+          <Reveal>
+            <Grid />
+          </Reveal>
         </section>
 
         {/* Quote Section */}
         <aside aria-label="Featured quote">
-          <Quote />
+          <Reveal>
+            <Quote />
+          </Reveal>
         </aside>
 
         {/* Profile Section */}
         <section aria-label="Profile details" id="profile">
-          <Profile />
+          <Reveal>
+            <Profile />
+          </Reveal>
         </section>
 
         {/* Connect Section */}
         <section aria-label="Contact and social links" id="connect">
-          <Connect />
+          <Reveal>
+            <Connect />
+          </Reveal>
         </section>
 
         {/* Navigation */}
         <Navigation />
 
-        <SharedFooter position='relative' className='mb-20' />
+        <SharedFooter position='relative' className='mb-12' />
       </main>
     </>
   );

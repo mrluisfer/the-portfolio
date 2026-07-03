@@ -90,7 +90,7 @@ function TimelineDate({ asChild = false, className, ...props }: TimelineDateProp
     <Comp
       data-slot="timeline-date"
       className={cn(
-        'text-muted-foreground mb-1 block text-xs font-medium group-data-[orientation=vertical]/timeline:max-sm:h-4',
+        'text-muted-foreground mb-1 block text-xs font-medium transition-colors duration-300 group-hover/timeline-item:text-foreground group-data-[orientation=vertical]/timeline:max-sm:h-4',
         className
       )}
       {...props}
@@ -118,7 +118,7 @@ function TimelineIndicator({
     <div
       data-slot="timeline-indicator"
       className={cn(
-        'border-primary/20 group-data-completed/timeline-item:border-primary absolute size-4 rounded-full border-2 group-data-[orientation=horizontal]/timeline:-top-6 group-data-[orientation=horizontal]/timeline:left-0 group-data-[orientation=horizontal]/timeline:-translate-y-1/2 group-data-[orientation=vertical]/timeline:top-0 group-data-[orientation=vertical]/timeline:-left-6 group-data-[orientation=vertical]/timeline:-translate-x-1/2',
+        'border-primary/20 group-data-completed/timeline-item:border-primary absolute size-4 rounded-full border-2 transition-all duration-300 group-hover/timeline-item:scale-125 group-hover/timeline-item:border-primary group-hover/timeline-item:shadow-[0_0_0_4px] group-hover/timeline-item:shadow-primary/15 group-data-[orientation=horizontal]/timeline:-top-6 group-data-[orientation=horizontal]/timeline:left-0 group-data-[orientation=horizontal]/timeline:-translate-y-1/2 group-data-[orientation=vertical]/timeline:top-0 group-data-[orientation=vertical]/timeline:-left-6 group-data-[orientation=vertical]/timeline:-translate-x-1/2',
         className
       )}
       aria-hidden="true"
@@ -168,7 +168,14 @@ function TimelineSeparator({ className, ...props }: React.HTMLAttributes<HTMLDiv
 // TimelineTitle
 function TimelineTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h3 data-slot="timeline-title" className={cn('text-sm font-medium', className)} {...props} />
+    <h3
+      data-slot="timeline-title"
+      className={cn(
+        'text-foreground text-sm font-medium transition-all duration-300 group-hover/timeline-item:translate-x-0.5 group-hover/timeline-item:text-primary',
+        className
+      )}
+      {...props}
+    />
   );
 }
 

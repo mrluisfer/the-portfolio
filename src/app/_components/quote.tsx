@@ -9,7 +9,7 @@ import Link from 'next/link';
 export const Quote = () => {
   return (
     <Container>
-      <div className="px-6 py-16 text-center sm:py-20">
+      <div className="px-6 py-8 text-center sm:py-10">
         <div className="mb-6 flex justify-center">
           <Badge variant={'outline'}>
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400"></span>
@@ -25,7 +25,7 @@ export const Quote = () => {
           </h2>
         </Title>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button variant={'outline'} asChild size={'lg'} className="dark:text-white">
             <Link href={`#${NAVIGATION_NAMES.PROJECTS}`}>
               <FolderRootIcon />

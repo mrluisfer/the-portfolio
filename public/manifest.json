@@ -1,0 +1,28 @@
+{
+  "name": "Luis Alvarez Portfolio",
+  "short_name": "Luis Alvarez",
+  "description": "Full-Stack Software Engineer specialized in React, Next.js, TypeScript and Node.js.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["portfolio", "technology", "productivity"],
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

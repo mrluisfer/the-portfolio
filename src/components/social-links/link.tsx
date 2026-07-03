@@ -22,12 +22,12 @@ export default function SocialLink({ href, alt, hoverClassName, children }: Soci
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            'inline-flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/80 text-muted-foreground transition-all duration-200',
-            'hover:scale-105 hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+            'group inline-flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/80 text-muted-foreground transition-all duration-200',
+            'hover:-translate-y-0.5 hover:scale-105 hover:border-border hover:shadow-md active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
             hoverClassName
           )}
         >
-          <span className="[&_svg]:size-5" aria-hidden>
+          <span className="transition-transform duration-200 group-hover:scale-110 [&_svg]:size-5" aria-hidden>
             {children}
           </span>
         </a>

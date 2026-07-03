@@ -22,36 +22,37 @@ export default function Sharing() {
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="group/sharing lg:max-w-auto relative flex h-fit w-full flex-col overflow-hidden rounded-[inherit] p-4 sm:max-w-[350px] sm:p-5 lg:max-h-none lg:p-6"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-green-100/90 to-teal-100 transition-opacity duration-500 group-hover/sharing:opacity-90 dark:from-emerald-950/40 dark:via-green-950/30 dark:to-teal-950/50" />
-
-      {/* Animated gradient overlay */}
+      {/* Animated ambient glow */}
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/sharing:opacity-100">
-        <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-emerald-400/20 blur-3xl" />
-        <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-green-400/20 blur-3xl" />
+        <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-zinc-400/15 blur-3xl dark:bg-zinc-100/[0.04]" />
+        <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-zinc-400/15 blur-3xl dark:bg-zinc-100/[0.04]" />
       </div>
-
-      {/* Subtle border gradient */}
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-emerald-300/40 ring-inset dark:ring-emerald-600/20" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col">
         {/* GitHub Badge */}
         <motion.div
-          whileHover={{ scale: 1.05, rotate: 5 }}
-          whileTap={{ scale: 0.95 }}
+          className="w-fit"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
-          <Link
-            href={socialMediaLinks.GITHUB}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-fit w-fit touch-manipulation items-center gap-2 rounded-xl bg-[#24292f] px-3 py-2 text-xl text-white shadow-md ring-2 ring-transparent transition-all hover:bg-[#2d333b] hover:shadow-xl hover:ring-emerald-400/20 active:scale-95 sm:text-2xl"
-            aria-label="Visit GitHub profile"
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="rounded-xl transition-all hover:shadow-md active:scale-[0.98]"
           >
-            <TbBrandGithubFilled />
-            <span className="hidden text-xs font-medium sm:inline">GitHub</span>
-          </Link>
+            <Link
+              href={socialMediaLinks.GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit GitHub profile"
+            >
+              <TbBrandGithubFilled className="size-4" />
+              <span className="text-xs font-medium">GitHub</span>
+            </Link>
+          </Button>
         </motion.div>
 
         {/* Content Area */}
@@ -90,20 +91,12 @@ export default function Sharing() {
             }}
           >
             <Button
-              className="group relative w-full touch-manipulation overflow-hidden rounded-xl bg-white px-5 py-3 text-sm font-semibold text-emerald-600 no-underline shadow-md ring-2 ring-emerald-200/50 transition-all hover:shadow-lg hover:shadow-emerald-200/50 hover:ring-emerald-300 active:scale-[0.98] sm:w-auto sm:px-6 sm:py-3 sm:text-base dark:bg-emerald-950 dark:text-emerald-100 dark:ring-emerald-700/50 dark:hover:ring-emerald-600"
+              className="w-full rounded-xl font-semibold transition-all hover:shadow-md active:scale-[0.98] sm:w-auto"
               asChild
-              variant="link"
+              variant="outline"
+              size="lg"
             >
-              <Link
-                href="/projects"
-                className="flex items-center justify-center gap-2 no-underline sm:gap-3"
-              >
-                {/* Animated background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover:opacity-100 dark:from-emerald-900/20 dark:to-green-900/20"
-                  transition={{ duration: 0.3 }}
-                />
-
+              <Link href="/projects" className="flex items-center justify-center gap-2 sm:gap-3">
                 {/* Icon */}
                 <motion.div
                   className="relative h-6 w-6 sm:h-7 sm:w-7"
@@ -117,11 +110,11 @@ export default function Sharing() {
                 </motion.div>
 
                 {/* Text */}
-                <span className="relative">See my projects</span>
+                <span>See my projects</span>
 
                 {/* Arrow indicator */}
                 <motion.span
-                  className="relative text-lg"
+                  className="text-lg"
                   animate={{
                     x: isHovered ? 4 : 0,
                   }}

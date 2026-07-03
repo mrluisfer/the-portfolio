@@ -1,167 +1,209 @@
 'use client';
 
 import { Spotify, SpotifyDark } from '@/assets/icons/allIcons';
-import { Badge } from '@/components/ui/badge';
 import SocialMediaLinks from '@/constants/social-media-links';
+import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
-// 🎵 Lista de álbumes
-const ALBUMS = [
+type Album = {
+  title: string;
+  artist: string;
+  image: string;
+  url: string;
+  /** Optional metadata — render only when present, so each track can be enriched over time. */
+  album?: string;
+  year?: string;
+  duration?: string; // "m:ss"
+};
+
+// 🎵 Lista de canciones. Añade/edita campos opcionales para complementar cada tema.
+const ALBUMS: Album[] = [
   {
     title: 'The Color Violet',
+    artist: 'Tory Lanez',
     image: '/assets/albums/color-violet.webp',
-    author: 'Tory Lanez',
     url: 'https://open.spotify.com/track/3azJifCSqg9fRij2yKIbWz',
+    album: 'Alone at Prom',
+    year: '2021',
+    duration: '3:47',
   },
   {
     title: 'Remember When',
+    artist: 'Wallows',
     image: '/assets/albums/remember-when.webp',
-    author: 'Wallows',
     url: 'http://open.spotify.com/track/5naar7XewEOAjOywIp6Jjq',
+    album: 'Model',
+    year: '2024',
+    duration: '2:53',
   },
   {
     title: 'Then It All Goes',
+    artist: 'Dayglow',
     image: '/assets/albums/then-it-all-goes.webp',
-    author: 'Dayglow',
     url: 'https://open.spotify.com/track/7MzjD4Ayl07w0TRsYSqfCh',
+    album: 'Harmony House',
+    year: '2022',
+    duration: '3:30',
   },
   {
     title: 'Toxicity',
+    artist: 'System of a Down',
     image: '/assets/albums/toxicity.webp',
-    author: 'System of a Down',
     url: 'https://open.spotify.com/track/0snQkGI5qnAmohLE7jTsTn',
+    album: 'Toxicity',
+    year: '2001',
+    duration: '3:39',
   },
 ];
 
-/** Contenido del popover: solo se monta al abrir, y carga Lottie + JSON bajo demanda */
-function CurrentPlayingPopoverContent() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [LottieEl, setLottieEl] = useState<React.ReactNode>(null);
-  const lottieRef = useRef(null);
+/** Random album index, optionally avoiding the current one so it always visibly changes. */
+function getRandomAlbumIndex(exclude = -1) {
+  if (ALBUMS.length <= 1) return 0;
+  let next = Math.floor(Math.random() * ALBUMS.length);
+  while (next === exclude) next = Math.floor(Math.random() * ALBUMS.length);
+  return next;
+}
 
+/** Animated "now playing" equalizer — pure CSS transform loop, no React re-renders. */
+function Equalizer() {
+  return (
+    <span className="flex h-3.5 items-end gap-[2px]" aria-hidden>
+      {[0, 1, 2, 3].map((i) => (
+        <motion.span
+          key={i}
+          className="w-[2px] flex-1 origin-bottom rounded-full bg-emerald-500 dark:bg-emerald-400"
+          style={{ height: '100%' }}
+          animate={{ scaleY: [0.3, 1, 0.45, 0.8, 0.35] }}
+          transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut', delay: i * 0.15 }}
+        />
+      ))}
+    </span>
+  );
+}
+
+/**
+ * Mini player content: only mounts while open, so the lazy random initializer runs
+ * on every hover → a fresh track each time. Client-only, so no SSR mismatch.
+ */
+function MiniPlayer() {
+  // Lazy initializer → random track per mount (per hover).
+  const [currentIndex, setCurrentIndex] = useState(() => getRandomAlbumIndex());
+
+  // Keep cycling to a different random track while the user lingers.
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % ALBUMS.length);
-    }, 10000);
+      setCurrentIndex((prev) => getRandomAlbumIndex(prev));
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
-  // Carga diferida de Lottie y del JSON solo cuando el popover está abierto
-  useEffect(() => {
-    let cancelled = false;
-    Promise.all([
-      import('lottie-react'),
-      import('@/lotties/spotify.json'),
-    ]).then(([lottieModule, dataModule]) => {
-      if (cancelled) return;
-      const Lottie = lottieModule.default;
-      const data = dataModule.default as object;
-      setLottieEl(
-        <Lottie
-          lottieRef={lottieRef}
-          animationData={data}
-          className="absolute left-0 h-fit w-fit transform"
-          autoplay={false}
-          loop={false}
-        />
-      );
-    });
-    return () => { cancelled = true; };
-  }, []);
-
-  const currentAlbum = ALBUMS[currentIndex];
+  const track = ALBUMS[currentIndex];
+  const meta = [track.album, track.year].filter(Boolean).join(' · ');
 
   return (
-    <div className="relative h-[300px] w-[300px] overflow-hidden rounded-xl">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentAlbum.image}
-          className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-cover bg-center"
-          style={{ backgroundImage: `url(${currentAlbum.image})` }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2 }}
-        >
-          <Badge
-            asChild
-            variant="secondary"
-            className="absolute top-3 left-3 flex items-center gap-2"
-          >
-            <Link href={currentAlbum.url} target="_blank" rel="noopener noreferrer">
-              <div className="relative h-5 w-5 overflow-hidden">
-                {LottieEl}
-              </div>
-              <p className="text-foreground text-xs font-semibold drop-shadow dark:text-white">
-                Listen Now
-              </p>
-            </Link>
-          </Badge>
+    <div className="w-[300px] p-3">
+      {/* Header */}
+      <div className="mb-3 flex items-center justify-between px-1">
+        <div className="flex items-center gap-2">
+          <Equalizer />
+          <span className="text-muted-foreground text-xs font-medium">Now playing</span>
+        </div>
+        <span className="text-muted-foreground [&_svg]:size-4" aria-hidden>
+          <Spotify />
+        </span>
+      </div>
 
-            <motion.div
-              className="absolute bottom-5 w-[280px] rounded-xl bg-yellow-500/10 px-4 py-3 text-white backdrop-blur-md"
-              whileHover={{ scale: 0.95 }}
-            >
-              <p className="text-lg font-bold">{currentAlbum.title}</p>
-              <p className="text-sm">{currentAlbum.author}</p>
-            </motion.div>
+      {/* Track (crossfades on change) */}
+      <div className="relative min-h-[76px]">
+        <AnimatePresence>
+          <motion.div
+            key={track.image}
+            className="absolute inset-0 flex items-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Image
+              src={track.image}
+              alt={`${track.title} — ${track.artist}`}
+              width={72}
+              height={72}
+              className="size-[72px] shrink-0 rounded-lg object-cover shadow-sm ring-1 ring-black/5 dark:ring-white/10"
+            />
+            <div className="min-w-0 flex-1">
+              <p className="text-foreground truncate text-sm font-semibold">{track.title}</p>
+              <p className="text-muted-foreground truncate text-xs">{track.artist}</p>
+              {meta && <p className="text-muted-foreground/70 mt-0.5 truncate text-[11px]">{meta}</p>}
+            </div>
           </motion.div>
-      </AnimatePresence>
+        </AnimatePresence>
+      </div>
+
+      {/* CTA */}
+      <Link
+        href={track.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 flex items-center justify-center gap-2 rounded-lg border border-border/60 bg-background/80 py-2 text-xs font-semibold transition-all hover:bg-muted/60 active:scale-[0.98]"
+      >
+        <span className="[&_svg]:size-4" aria-hidden>
+          <Spotify />
+        </span>
+        Listen on Spotify
+      </Link>
     </div>
   );
 }
 
 export default function CurrentPlaying() {
-  return (
-    <Popover>
-      {(isOpen) => (isOpen ? <CurrentPlayingPopoverContent /> : null)}
-    </Popover>
-  );
+  return <Popover>{(isOpen) => (isOpen ? <MiniPlayer /> : null)}</Popover>;
 }
 
-function Popover({
-  children,
-}: {
-  children: (isOpen: boolean) => ReactNode;
-}) {
+function Popover({ children }: { children: (isOpen: boolean) => ReactNode }) {
   const [showPopover, setShowPopover] = useState(false);
-  const { theme } = useTheme();
-  const useDarkIcon = theme === 'dark' || theme === 'system';
+  const { resolvedTheme } = useTheme();
+  const useDarkIcon = resolvedTheme === 'dark';
 
   return (
-    <motion.div>
-      <motion.div
-        className="relative"
-        onMouseOver={() => setShowPopover(true)}
-        onMouseLeave={() => setShowPopover(false)}
+    <div
+      className="relative"
+      onMouseEnter={() => setShowPopover(true)}
+      onMouseLeave={() => setShowPopover(false)}
+    >
+      <Link
+        href={SocialMediaLinks.SPOTIFY}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Spotify: mrLuisFer"
+        title="Spotify"
+        className={cn(
+          'inline-flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/80 text-muted-foreground transition-all duration-200',
+          'hover:scale-105 hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          '[&_svg]:size-5'
+        )}
       >
-        <Link
-          href={SocialMediaLinks.SPOTIFY}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-2xl text-neutral-700 transition-all hover:text-blue-500 dark:text-neutral-100 dark:hover:text-blue-400"
-        >
-          {useDarkIcon ? <SpotifyDark /> : <Spotify />}
-        </Link>
+        {useDarkIcon ? <SpotifyDark /> : <Spotify />}
+      </Link>
 
-        <AnimatePresence mode="wait">
-          {showPopover && (
-            <motion.div
-              className="absolute top-7 -left-10 z-20 min-w-[170px] rounded-xl border border-neutral-400 bg-white shadow-md"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.15 }}
-              key="box"
-            >
-              {children(showPopover)}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </motion.div>
+      <AnimatePresence>
+        {showPopover && (
+          <motion.div
+            key="box"
+            className="absolute top-full -left-10 z-20 mt-2 origin-top overflow-hidden rounded-xl border border-border bg-background shadow-lg"
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            {children(showPopover)}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

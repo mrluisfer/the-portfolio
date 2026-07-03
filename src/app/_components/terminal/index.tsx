@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'motion/react';
 import { FiMaximize2 } from 'react-icons/fi';
 import { GoDash } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
@@ -24,11 +23,11 @@ function TerminalDot({ color, Icon }: { color: string; Icon?: IconType }) {
 export default function Terminal() {
   return (
     <div
-      className="general-pattern relative my-16 bg-gradient-to-br px-5 py-24 sm:px-0 sm:py-32"
+      className="general-pattern relative my-10 bg-gradient-to-br px-5 py-16 sm:px-0 sm:py-20"
       id={NAVIGATION_NAMES.TERMINAL}
     >
-      <motion.div className="mx-auto rounded-lg shadow-2xl shadow-neutral-200 md:w-[600px]">
-        <ShadowBox>
+      <div className="group relative z-30 mx-auto rounded-lg transition-transform duration-300 ease-out hover:-translate-y-1 md:w-[600px]">
+        <ShadowBox className="transition-shadow duration-300 group-hover:shadow-2xl group-hover:shadow-neutral-400/40 dark:group-hover:shadow-black/60">
           <header className="relative flex items-center rounded-t-lg bg-neutral-200 px-4 py-2 transition hover:brightness-95 dark:bg-neutral-800">
             <div className="absolute flex items-center gap-2">
               <TerminalDot color="bg-red-400" Icon={IoClose} />
@@ -41,7 +40,7 @@ export default function Terminal() {
             <Content />
           </div>
         </ShadowBox>
-      </motion.div>
+      </div>
     </div>
   );
 }

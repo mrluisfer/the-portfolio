@@ -26,7 +26,7 @@ export const Project = ({ className, project }: { className?: string; project: P
       variants={cardVariants}
       aria-labelledby={`project-title-${projectSlug}`}
       className={clsx(
-        'group relative flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200/80 bg-white shadow-sm transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 sm:hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80',
+        'group relative flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200/80 bg-white shadow-sm transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1.5 sm:hover:border-neutral-300 sm:hover:shadow-xl sm:hover:shadow-neutral-300/40 dark:border-neutral-800 dark:bg-neutral-900/80 dark:sm:hover:border-neutral-700 dark:sm:hover:shadow-black/50',
         'focus-within:ring-primary/50 focus-within:ring-2 focus-within:ring-offset-2',
         className
       )}
@@ -39,7 +39,7 @@ export const Project = ({ className, project }: { className?: string; project: P
             alt=""
             aria-hidden="true"
             fill
-            className="object-cover transition-transform duration-500 sm:group-hover:scale-[1.03]"
+            className="object-cover transition-transform duration-500 sm:group-hover:scale-[1.06]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           {/* Gradient overlay for text contrast */}
@@ -127,7 +127,7 @@ export const Project = ({ className, project }: { className?: string; project: P
             <li key={index}>
               <Badge
                 variant="secondary"
-                className="rounded-md px-2 py-0.5 text-[11px] font-medium sm:px-1.5 sm:py-0 sm:text-[10px]"
+                className="relative isolate overflow-hidden rounded-md border border-transparent px-2 py-0.5 text-[11px] font-medium transition-all duration-300 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-foreground before:transition-transform before:duration-300 before:ease-out hover:-translate-y-0.5 hover:text-background hover:before:scale-x-100 sm:px-1.5 sm:py-0 sm:text-[10px]"
               >
                 {tech}
               </Badge>
@@ -137,7 +137,7 @@ export const Project = ({ className, project }: { className?: string; project: P
             <li>
               <Badge
                 variant="outline"
-                className="text-muted-foreground rounded-md px-2 py-0.5 text-[11px] font-medium sm:px-1.5 sm:py-0 sm:text-[10px]"
+                className="text-muted-foreground hover:border-foreground/40 hover:text-foreground rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors duration-200 sm:px-1.5 sm:py-0 sm:text-[10px]"
                 aria-label={`And ${project.technologies.length - 4} more technologies`}
               >
                 +{project.technologies.length - 4}

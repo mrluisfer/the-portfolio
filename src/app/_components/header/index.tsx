@@ -26,13 +26,9 @@ export default function Header() {
         className={`relative border-b transition-all duration-300 ease-out ${
           isScrolled
             ? 'border-white/20 bg-white/50 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.1)] backdrop-blur-2xl backdrop-saturate-[200%] dark:border-white/[0.08] dark:bg-black/50 dark:shadow-[0_2px_20px_-5px_rgba(0,0,0,0.4)]'
-            : 'border-transparent bg-white/15 dark:bg-black/15'
+            : 'border-transparent bg-transparent'
         } `}
       >
-        <div
-          className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transition-opacity duration-300 dark:via-blue-500/20 ${isScrolled ? 'opacity-100' : 'opacity-0'} `}
-        />
-
         <Container>
           <header className="relative z-10 mx-auto flex items-baseline gap-3 px-2 py-2.5 sm:gap-4 sm:px-4 sm:py-3 md:items-center lg:pr-4 lg:pl-0 xl:px-0">
             <div className="flex shrink-0 items-center lg:flex-1 lg:justify-start">

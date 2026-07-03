@@ -19,7 +19,7 @@ export function NotFoundComponent() {
         aria-hidden
         className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl"
         style={{
-          background: 'radial-gradient(40% 40% at 50% 50%, rgba(59,130,246,0.35), transparent)',
+          background: 'radial-gradient(40% 40% at 50% 50%, rgba(113,113,122,0.28), transparent)',
         }}
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -29,7 +29,7 @@ export function NotFoundComponent() {
         aria-hidden
         className="pointer-events-none absolute -right-28 -bottom-28 h-80 w-80 rounded-full blur-3xl"
         style={{
-          background: 'radial-gradient(40% 40% at 50% 50%, rgba(16,185,129,0.30), transparent)',
+          background: 'radial-gradient(40% 40% at 50% 50%, rgba(161,161,170,0.22), transparent)',
         }}
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}

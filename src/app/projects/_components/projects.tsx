@@ -13,7 +13,7 @@ export default function Projects() {
         </h2>
         <Button asChild size={'sm'} className="dark:text-white">
           <Link
-            href="https://github.com/mrluisfer/repositories"
+            href="https://github.com/mrluisfer?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
           >

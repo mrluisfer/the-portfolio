@@ -55,20 +55,20 @@ const Header = () => {
           }
           className="group relative inline-block"
         >
-          <Avatar className="h-20 w-20 shadow-lg ring-4 ring-blue-200/60 transition-all duration-300 group-hover:ring-blue-400/50 sm:h-24 sm:w-24 lg:h-28 lg:w-28 dark:ring-blue-800/60 dark:group-hover:ring-blue-500/50">
+          <Avatar className="h-20 w-20 shadow-lg ring-4 ring-zinc-200/70 transition-all duration-300 group-hover:ring-zinc-300/70 sm:h-24 sm:w-24 lg:h-28 lg:w-28 dark:ring-white/10 dark:group-hover:ring-white/20">
             <AvatarImage
               src={GITHUB_PROFILE_IMG}
               alt="Luis Alvarez - Full Stack Developer"
               className="object-cover"
             />
-            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-xl font-bold text-white">
+            <AvatarFallback className="bg-zinc-800 text-xl font-bold text-white dark:bg-zinc-700">
               LA
             </AvatarFallback>
           </Avatar>
 
           {/* Verified Badge - decorative, not interactive */}
           <span
-            className="absolute -right-1 -bottom-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-md ring-2 ring-white sm:h-9 sm:w-9 dark:from-blue-400 dark:to-blue-500 dark:ring-slate-900"
+            className="absolute -right-1 -bottom-1 flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 text-white shadow-md ring-2 ring-white sm:h-9 sm:w-9 dark:bg-white dark:text-zinc-900 dark:ring-slate-900"
             role="img"
             aria-label="Verified Developer"
           >
@@ -77,7 +77,7 @@ const Header = () => {
 
           {/* Subtle glow on hover */}
           <div
-            className="absolute inset-0 -z-10 rounded-full bg-blue-400/15 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100 dark:bg-blue-500/20"
+            className="absolute inset-0 -z-10 rounded-full bg-zinc-400/15 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100 dark:bg-white/10"
             aria-hidden
           />
         </motion.div>
@@ -158,7 +158,7 @@ const Header = () => {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-400/20 blur-sm dark:from-blue-500/25 dark:to-purple-500/25"
+            className="h-8 w-8 rounded-full bg-zinc-400/20 blur-sm dark:bg-white/10"
           />
         </div>
       )}
