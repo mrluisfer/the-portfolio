@@ -1,0 +1,9 @@
+{
+  "schedule": "weekly",
+  "ignoredFiles": [
+    "public/svgl/**"
+  ],
+  "aggressiveCompression": "true",
+  "compressWiki": "false",
+  "minKBReduced": 10
+}
