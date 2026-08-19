@@ -8,3 +8,6 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: false
+minimumReleaseAgeExclude:
+  - lucide-react@1.33.0
+  - lucide@1.33.0

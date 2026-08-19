@@ -2,11 +2,17 @@
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
-    "jsx": "preserve",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
+    ],
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "baseUrl": ".",
     "target": "ES2017",
@@ -14,7 +20,7 @@
     "noEmit": true,
     "incremental": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "plugins": [
@@ -23,6 +29,14 @@
       }
     ]
   },
-  "include": [".tanstack/*", "src", ".next/types/**/*.ts"],
-  "exclude": ["dist", "node_modules"]
+  "include": [
+    ".tanstack/*",
+    "src",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }

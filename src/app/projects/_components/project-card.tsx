@@ -1,12 +1,13 @@
 'use client';
 
 import { ProjectType } from '@/app/_components/projects/projects-list';
+import { GithubDark } from '@/assets/icons/allIcons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { getSlugFromString } from '@/utils/get-slug-from-string';
-import { BookMarkedIcon, ExternalLink, Github } from 'lucide-react';
+import { BookMarkedIcon, ExternalLink } from 'lucide-react';
 import { MotionConfig, motion, useReducedMotion, type Variants } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -121,7 +122,7 @@ export function ProjectCard({ project }: { project: ProjectType }) {
                         rel="noopener noreferrer"
                         aria-label="Open repository on GitHub"
                       >
-                        <Github className="h-4 w-4" />
+                        <GithubDark className="h-4 w-4" />
                         <span className="hidden sm:inline">Code</span>
                       </Link>
                     </Button>

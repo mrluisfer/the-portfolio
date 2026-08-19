@@ -3,7 +3,7 @@
 import Container from '@/components/container';
 import { NAVIGATION_NAMES } from '@/constants/navigation-names';
 import craft from '@/lotties/craft.json';
-import Lottie from 'lottie-react';
+import { Lottie } from 'lottie-react';
 import { LayoutDashboardIcon, ServerIcon } from 'lucide-react';
 import FocusedOn from './focused-on';
 
@@ -21,7 +21,7 @@ export default function About() {
           <div className="mt-2 flex flex-wrap items-start justify-center gap-3 text-lg leading-relaxed">
             <div className="flex items-center gap-1">
               <div className="h-7 w-8">
-                <Lottie animationData={craft} />
+                <Lottie src={craft} loop autoplay />
               </div>
               Crafting
             </div>{' '}

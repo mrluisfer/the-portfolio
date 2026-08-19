@@ -1,8 +1,9 @@
 'use client';
 
+import { GitHub } from '@/assets/icons/allIcons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { GithubIcon, HomeIcon } from 'lucide-react';
+import { HomeIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
@@ -72,7 +73,7 @@ export function NotFoundComponent() {
               <motion.div whileHover={{ scale: 0.98 }} whileTap={{ scale: 0.96 }}>
                 <Button asChild variant="outline">
                   <Link href="https://github.com/mrluisfer" target="_blank" rel="noreferrer">
-                    <GithubIcon className="mr-2 h-4 w-4" />
+                    <GitHub className="mr-2 h-4 w-4" />
                     More projects on my GitHub
                   </Link>
                 </Button>

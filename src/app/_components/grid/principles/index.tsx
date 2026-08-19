@@ -1,5 +1,5 @@
 import { useHover } from '@/hooks/use-hover';
-import Lottie from 'lottie-react';
+import { Lottie } from 'lottie-react';
 import { motion } from 'motion/react';
 import { type Principle as TPrinciple, principles } from './principles-list';
 
@@ -61,7 +61,7 @@ function Principle({ principle, index }: { principle: TPrinciple; index: number 
         animate={{ scale: isHover ? 1.05 : 1 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
-        <Lottie animationData={icon} loop={isHover} />
+        <Lottie src={icon} loop={isHover} />
       </motion.div>
 
       {/* Title */}

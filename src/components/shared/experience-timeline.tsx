@@ -9,7 +9,7 @@ import {
   TimelineTitle,
 } from '@/components/ui/timeline';
 import { reverseArray } from '@/lib/reverse-array';
-import { defaultTimelineData } from '../../constants/default-timeline-data';
+import { defaultTimelineData, TimelineItemData } from '../../constants/default-timeline-data';
 
 export default function ExperienceTimeline({
   minimal = false,
@@ -24,10 +24,10 @@ export default function ExperienceTimeline({
       orientation="vertical"
       className={className}
     >
-      {reverseArray(defaultTimelineData).map((item) => (
+      {reverseArray(defaultTimelineData).map((item: TimelineItemData, id) => (
         <TimelineItem
-          key={item.id}
-          step={item.id}
+          key={`${item.title}`}
+          step={id}
           className="group-data-[orientation=vertical]/timeline:sm:ms-32"
         >
           <TimelineHeader>
@@ -40,7 +40,12 @@ export default function ExperienceTimeline({
           </TimelineHeader>
           {minimal ? null : (
             <TimelineContent className="max-w-xl leading-relaxed">
+              <p className='group-hover/timeline-item:text-primary transition'>
+              {minimal ? null : item.modality}
+              </p>
+              <p className='group-hover/timeline-item:text-black dark:group-hover/timeline-item:text-white transition'>
               {item.description}
+              </p>
             </TimelineContent>
           )}
         </TimelineItem>

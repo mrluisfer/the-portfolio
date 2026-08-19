@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import socialMediaLinks from '@/constants/social-media-links';
 import linkAnimationData from '@/lotties/link.json';
-import Lottie, { type LottieRefCurrentProps } from 'lottie-react';
+import { Lottie, LottieHandle } from 'lottie-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
@@ -10,7 +10,7 @@ import { TbBrandGithubFilled } from 'react-icons/tb';
 const START_YEAR = 2021;
 
 export default function Sharing() {
-  const logoRef = useRef<LottieRefCurrentProps>(null);
+  const logoRef = useRef<LottieHandle>(null);
   const [isHovered, setIsHovered] = useState(false);
   const currentYear = new Date().getFullYear();
   const experience = currentYear - START_YEAR;
@@ -106,7 +106,7 @@ export default function Sharing() {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Lottie lottieRef={logoRef} animationData={linkAnimationData} loop={false} />
+                  <Lottie lottieRef={logoRef} src={linkAnimationData} loop={false} />
                 </motion.div>
 
                 {/* Text */}

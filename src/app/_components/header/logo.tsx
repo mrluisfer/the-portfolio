@@ -1,17 +1,17 @@
 import catAnimationData from '@/lotties/cat.json';
-import Lottie, { type LottieRefCurrentProps } from 'lottie-react';
+import { Lottie, LottieHandle } from 'lottie-react';
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 
 export default function Logo() {
-  const logoRef = useRef<LottieRefCurrentProps>(null);
+  const logoRef = useRef<LottieHandle>(null);
 
   return (
     <motion.div className="group flex cursor-default items-center gap-2">
       <div className="relative h-20 w-20 overflow-hidden">
         <Lottie
           lottieRef={logoRef}
-          animationData={catAnimationData}
+          src={catAnimationData}
           className="absolute left-0 h-fit w-fit scale-150 transform"
           autoplay
           loop
